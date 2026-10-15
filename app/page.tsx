@@ -1,14 +1,26 @@
+import { HeroSection } from "@/components/shared/hero-section";
 import { homeData } from "@/data/home";
 
 export default function HomePage() {
+  const { hero } = homeData;
+
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">
-        {homeData.title}
-      </h1>
-      <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
-        {homeData.description}
-      </p>
-    </div>
+    <HeroSection
+      isHome
+      showExplore
+      title={hero.title}
+      subtitle={hero.subtitle}
+      subtitleHighlights={hero.subtitleHighlights}
+      backgroundImage={hero.backgroundImage}
+      exploreText={hero.exploreText}
+      shopCgmHref={hero.shopCgm.href}
+      shopCgmLabel={hero.shopCgm.label}
+      shopCgmMessage={hero.shopCgm.message}
+      disclaimer={hero.disclaimer}
+      aiSuggestions={hero.aiSuggestions}
+      aiReplies={hero.aiReplies}
+      aiFallbackReply={hero.aiFallbackReply}
+      aiPlaceholder={hero.aiPlaceholder}
+    />
   );
 }

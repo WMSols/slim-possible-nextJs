@@ -3,11 +3,31 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --brand-purple: #7b3fa0;
+  --brand-purple-light: #c4a0d8;
+  --brand-orange: #e85a2b;
+  --brand-blue: #005282;
+  --brand-navy: #0b2c4a;
+  --brand-mint: #b8e4dc;
+  --brand-mint-dark: #2a8a7a;
+  --brand-green: #2db84c;
+  --brand-gradient-from: #8b6bb5;
+  --brand-gradient-to: #f0b8a8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-purple-light: var(--brand-purple-light);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-mint-dark: var(--brand-mint-dark);
+  --color-brand-green: var(--brand-green);
+  --color-brand-gradient-from: var(--brand-gradient-from);
+  --color-brand-gradient-to: var(--brand-gradient-to);
   --font-sans: var(--font-inter);
 }
 
