@@ -1,14 +1,27 @@
+import { HeroSection } from "@/components/shared/hero-section";
+import { SmallRoundBanner } from "@/components/shared/small-round-banner";
 import { communityAndMediaData } from "@/data/community-and-media";
 
 export default function CommunityAndMediaPage() {
+  const { hero, nextStepBanner } = communityAndMediaData;
+
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">
-        {communityAndMediaData.title}
-      </h1>
-      <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
-        {communityAndMediaData.description}
-      </p>
-    </div>
+    <>
+      <HeroSection
+        showExplore
+        title={hero.title}
+        backgroundImage={hero.backgroundImage}
+        backgroundImages={hero.backgroundImages}
+        exploreText={hero.exploreText}
+      />
+
+      <div className="py-12 md:py-16">
+        <SmallRoundBanner
+          title={nextStepBanner.title}
+          description={nextStepBanner.description}
+          backgroundImage={nextStepBanner.backgroundImage}
+        />
+      </div>
+    </>
   );
 }

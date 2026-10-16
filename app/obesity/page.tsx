@@ -1,14 +1,46 @@
+import { HeroSection } from "@/components/shared/hero-section";
+import { SmallRoundBanner } from "@/components/shared/small-round-banner";
 import { obesityData } from "@/data/obesity";
 
 export default function ObesityPage() {
+  const { hero, banners } = obesityData;
+
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">
-        {obesityData.title}
-      </h1>
-      <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
-        {obesityData.description}
-      </p>
-    </div>
+    <>
+      <HeroSection
+        showExplore
+        title={hero.title}
+        subtitle={hero.subtitle}
+        backgroundImage={hero.backgroundImage}
+        exploreText={hero.exploreText}
+      />
+
+      <div className="flex flex-col gap-10 py-12 md:gap-14 md:py-16">
+        {banners.map((banner) => (
+          <SmallRoundBanner
+            key={banner.title}
+            variant="tall"
+            title={banner.title}
+            description={
+              Array.isArray(banner.description) ? (
+                <>
+                  {banner.description.map((paragraph) => (
+                    <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                  ))}
+                </>
+              ) : (
+                banner.description
+              )
+            }
+            backgroundImage={banner.backgroundImage}
+            showBlueCta={banner.showBlueCta}
+            hideAllCta={banner.hideAllCta}
+            titleClassName={
+              banner.hideAllCta ? "text-brand-orange" : "text-white"
+            }
+          />
+        ))}
+      </div>
+    </>
   );
 }

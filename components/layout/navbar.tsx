@@ -33,6 +33,7 @@ export function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const desktopSearchRef = useRef<HTMLInputElement>(null);
   const closeMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
@@ -209,7 +210,12 @@ export function Navbar() {
     );
 
   return (
-    <header className="pointer-events-none fixed left-0 right-0 top-6 z-50 mx-auto w-[90%]">
+    <header
+      className={cn(
+        "pointer-events-none fixed left-0 right-0 z-50 mx-auto w-[90%]",
+        isHomePage ? "top-14 md:top-16" : "top-6",
+      )}
+    >
       {/* Desktop */}
       <div
         className={cn(

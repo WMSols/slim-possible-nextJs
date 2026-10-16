@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useCallback, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDown, ArrowRight, X } from "lucide-react";
+import { ArrowDown, ArrowRight, MessageCircle, X } from "lucide-react";
 import { UniversalButton } from "@/components/shared/universal-button";
 
 export type HeroDisclaimer = {
@@ -15,6 +15,8 @@ export type HeroDisclaimer = {
 export type HeroSectionProps = {
   title: string;
   backgroundImage: string;
+  /** When set (e.g. Community), renders a multi-panel background on md+; mobile uses the first image. */
+  backgroundImages?: string[];
   subtitle?: string;
   subtitleHighlights?: string[];
   isSupport?: boolean;
@@ -69,6 +71,7 @@ function highlightSubtitle(text: string, highlights: string[] = []) {
 export function HeroSection({
   title,
   backgroundImage,
+  backgroundImages,
   subtitle,
   subtitleHighlights = [],
   isSupport = false,
@@ -88,16 +91,20 @@ export function HeroSection({
   aiFallbackReply = "Thanks for your question. This is general information, not a diagnosis.",
   aiPlaceholder = "Type a symptom, concern, or health question…",
 }: HeroSectionProps) {
+  const panelImages =
+    backgroundImages && backgroundImages.length > 1
+      ? backgroundImages
+      : [backgroundImage];
+  const isMultiPanel = panelImages.length > 1;
   const [toastOpen, setToastOpen] = useState(Boolean(disclaimer));
+  const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
   const alignClass = isSupport
     ? "items-start text-left"
-    : isHome
-      ? "items-start text-left lg:items-start"
-      : "items-center text-center";
+    : "items-center text-center";
 
   const sendMessage = useCallback(
     (rawText: string) => {
@@ -140,7 +147,7 @@ export function HeroSection({
       className={`relative w-full ${isHome ? "bg-brand-mint pt-0" : ""}`}
     >
       {isHome ? (
-        <div className="flex items-center justify-center gap-3 bg-brand-mint px-4 py-3 text-center text-sm text-zinc-800 md:text-base">
+        <div className="relative z-40 flex items-center justify-center gap-3 bg-brand-mint px-4 py-3 text-center text-sm text-zinc-800 md:py-3.5 md:text-base">
           <span>{shopCgmMessage}</span>
           <a
             href={shopCgmHref}
@@ -155,73 +162,122 @@ export function HeroSection({
       <div
         className={`relative isolate overflow-hidden ${
           isHome
-            ? "mx-2 min-h-[calc(100dvh-3.25rem)] rounded-[2rem] md:mx-3 md:rounded-[2.5rem] lg:rounded-[3rem]"
+            ? "min-h-[calc(100dvh-3.25rem)] rounded-t-[2rem] md:rounded-t-[2.5rem] lg:rounded-t-[3rem]"
             : "min-h-dvh"
         }`}
       >
-        <Image
-          src={backgroundImage}
-          alt=""
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+        {isMultiPanel ? (
+          <div className="absolute inset-0 grid md:grid-cols-3">
+            {panelImages.map((src, index) => (
+              <div
+                key={`${src}-${index}`}
+                className={`relative ${index === 0 ? "block" : "hidden md:block"}`}
+              >
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  priority={index === 0}
+                  className="object-cover"
+                  sizes={
+                    index === 0
+                      ? "(max-width: 768px) 100vw, 33vw"
+                      : "33vw"
+                  }
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        )}
         <div className="absolute inset-0 bg-black/40" aria-hidden />
 
-        <div
-          className={`relative z-10 flex min-h-[inherit] flex-col px-5 py-10 md:px-10 lg:px-14 ${
-            isHome ? "lg:py-14" : "justify-center"
-          }`}
-        >
+        <div className="relative z-10 flex min-h-[inherit] flex-col justify-center px-5 py-10 pt-24 md:px-10 md:pt-28 lg:px-14">
           <div
-            className={`flex flex-1 flex-col gap-8 ${
-              isHome
-                ? "lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)] lg:items-center lg:gap-10"
-                : ""
+            className={`mx-auto flex w-full max-w-3xl flex-col gap-4 md:gap-5 ${alignClass} ${
+              isSupport ? "mx-0 max-w-2xl" : ""
             }`}
           >
-            <div
-              className={`flex max-w-3xl flex-col gap-4 md:gap-5 ${alignClass} ${
-                isHome ? "mx-0 max-w-xl pt-6 lg:pt-0" : isSupport ? "" : "mx-auto"
-              }`}
+            <h1
+              className={`text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl ${titleClassName}`}
             >
-              <h1
-                className={`text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl ${titleClassName}`}
+              {title}
+            </h1>
+
+            {subtitle ? (
+              <p
+                className={`max-w-2xl text-base leading-relaxed text-white/95 md:text-xl ${
+                  isSupport ? "" : "mx-auto"
+                } ${subTitleClassName}`}
               >
-                {title}
-              </h1>
+                {highlightSubtitle(subtitle, subtitleHighlights)}
+              </p>
+            ) : null}
 
-              {subtitle ? (
-                <p
-                  className={`max-w-2xl text-base leading-relaxed text-white/95 md:text-xl ${subTitleClassName}`}
+            {isSupport && ctaText ? (
+              <div className="pt-2">
+                <UniversalButton
+                  variant="orange"
+                  ctaText={ctaText}
+                  ctaLink={ctaLink}
+                />
+              </div>
+            ) : null}
+
+            {isHome && !chatOpen ? (
+              <div className="pt-4">
+                <button
+                  type="button"
+                  onClick={() => setChatOpen(true)}
+                  className="inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to px-6 py-3 text-sm font-medium text-white shadow-md transition hover:brightness-105 md:text-base"
                 >
-                  {highlightSubtitle(subtitle, subtitleHighlights)}
-                </p>
-              ) : null}
+                  <MessageCircle className="size-4 md:size-5" aria-hidden />
+                  Ask SlimPossible&apos;s AI
+                </button>
+              </div>
+            ) : null}
+          </div>
 
-              {isSupport && ctaText ? (
-                <div className="pt-2">
-                  <UniversalButton
-                    variant="orange"
-                    ctaText={ctaText}
-                    ctaLink={ctaLink}
-                  />
-                </div>
-              ) : null}
-            </div>
+          <AnimatePresence>
+            {isHome && chatOpen ? (
+              <motion.div
+                initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 16, scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 340, damping: 28 }}
+                className="absolute bottom-24 right-4 z-30 w-[min(100%-2rem,22rem)] md:bottom-28 md:right-8 md:w-[24rem]"
+              >
+                <div className="flex flex-col overflow-hidden rounded-[1.5rem] bg-linear-to-b from-[#f7d5c8] to-[#c9b6e0] p-4 shadow-2xl md:rounded-[1.75rem] md:p-5">
+                  <div className="mb-3 flex items-center justify-between">
+                    <p className="text-sm font-medium text-zinc-800">
+                      SlimPossible AI
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setChatOpen(false)}
+                      className="rounded-full p-1.5 text-zinc-600 transition hover:bg-white/50 hover:text-zinc-900"
+                      aria-label="Close chat"
+                    >
+                      <X className="size-4" />
+                    </button>
+                  </div>
 
-            {isHome ? (
-              <div className="flex w-full justify-center lg:justify-end">
-                <div className="flex w-full max-w-md flex-col overflow-hidden rounded-[1.75rem] bg-linear-to-b from-[#f7d5c8] to-[#c9b6e0] p-4 shadow-lg md:max-w-lg md:rounded-[2rem] md:p-5">
-                  <div className="flex max-h-[42vh] flex-col gap-2.5 overflow-y-auto pr-1 md:max-h-[48vh]">
+                  <div className="flex max-h-[36vh] flex-col gap-2.5 overflow-y-auto pr-1 md:max-h-[40vh]">
                     {messages.length === 0
                       ? aiSuggestions.map((suggestion) => (
                           <button
                             key={suggestion}
                             type="button"
                             onClick={() => sendMessage(suggestion)}
-                            className="w-fit max-w-full rounded-full bg-white px-4 py-2.5 text-left text-sm text-zinc-800 shadow-sm transition hover:bg-white/90 md:text-base"
+                            className="w-fit max-w-full rounded-full bg-white px-4 py-2.5 text-left text-sm text-zinc-800 shadow-sm transition hover:bg-white/90"
                           >
                             {suggestion}
                           </button>
@@ -231,7 +287,7 @@ export function HeroSection({
                     {messages.map((message) => (
                       <div
                         key={message.id}
-                        className={`w-fit max-w-[95%] rounded-2xl px-4 py-2.5 text-sm md:text-base ${
+                        className={`w-fit max-w-[95%] rounded-2xl px-4 py-2.5 text-sm ${
                           message.role === "user"
                             ? "ml-auto bg-brand-blue text-white"
                             : "bg-white text-zinc-800 shadow-sm"
@@ -259,22 +315,22 @@ export function HeroSection({
                       value={inputValue}
                       onChange={(event) => setInputValue(event.target.value)}
                       placeholder={aiPlaceholder}
-                      className="min-w-0 flex-1 bg-transparent text-sm text-zinc-800 outline-none placeholder:text-zinc-500 md:text-base"
+                      className="min-w-0 flex-1 bg-transparent text-sm text-zinc-800 outline-none placeholder:text-zinc-500"
                       aria-label="Ask SlimPossible AI"
                     />
                     <button
                       type="submit"
                       disabled={isTyping || !inputValue.trim()}
-                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-blue text-white transition enabled:hover:brightness-110 disabled:opacity-50 md:size-11"
+                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-blue text-white transition enabled:hover:brightness-110 disabled:opacity-50"
                       aria-label="Send message"
                     >
                       <ArrowRight className="size-5" />
                     </button>
                   </form>
                 </div>
-              </div>
+              </motion.div>
             ) : null}
-          </div>
+          </AnimatePresence>
 
           <AnimatePresence>
             {isHome && toastOpen && disclaimer ? (

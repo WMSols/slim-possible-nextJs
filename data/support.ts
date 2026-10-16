@@ -10,4 +10,10 @@ export const supportData = {
     ctaLink: "#",
     exploreText: "Start your assessment",
   },
+  nextStepBanner: {
+    title: "Ready to Take the Next Step?",
+    description:
+      "Start with a quick assessment and get connected to professional weight-management support through Marham",
+    backgroundImage: "/images/man-sunset.jpg",
+  },
 };

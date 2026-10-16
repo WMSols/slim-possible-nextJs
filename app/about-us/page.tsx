@@ -1,14 +1,27 @@
+import { HeroSection } from "@/components/shared/hero-section";
+import { SmallRoundBanner } from "@/components/shared/small-round-banner";
 import { aboutUsData } from "@/data/about-us";
 
 export default function AboutUsPage() {
+  const { hero, nextStepBanner } = aboutUsData;
+
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight text-zinc-900">
-        {aboutUsData.title}
-      </h1>
-      <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
-        {aboutUsData.description}
-      </p>
-    </div>
+    <>
+      <HeroSection
+        showExplore
+        title={hero.title}
+        subtitle={hero.subtitle}
+        backgroundImage={hero.backgroundImage}
+        exploreText={hero.exploreText}
+      />
+
+      <div className="py-12 md:py-16">
+        <SmallRoundBanner
+          title={nextStepBanner.title}
+          description={nextStepBanner.description}
+          backgroundImage={nextStepBanner.backgroundImage}
+        />
+      </div>
+    </>
   );
 }
