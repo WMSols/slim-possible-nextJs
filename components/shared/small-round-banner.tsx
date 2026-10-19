@@ -9,6 +9,8 @@ export type SmallRoundBannerProps = {
   title: string;
   description: ReactNode;
   backgroundImage: string;
+  /** Optional line above the title (e.g. Support personalized banner). */
+  eyebrow?: string;
   titleClassName?: string;
   descriptionClassName?: string;
   /** Taller frame used on copy-heavy sections (SS2–SS4). */
@@ -34,6 +36,7 @@ export function SmallRoundBanner({
   title,
   description,
   backgroundImage,
+  eyebrow,
   titleClassName = "",
   descriptionClassName = "",
   variant = "default",
@@ -55,8 +58,8 @@ export function SmallRoundBanner({
         className={cn(
           "relative isolate overflow-hidden rounded-[25px] md:rounded-[35px]",
           isTall
-            ? "min-h-[28rem] md:min-h-[34rem] lg:min-h-[38rem]"
-            : "min-h-[20rem] md:min-h-[24rem]",
+            ? "min-h-[28rem] md:min-h-[700px] lg:min-h-[750px]"
+            : "min-h-[28rem] md:min-h-[34rem] lg:min-h-[38rem]",
         )}
       >
         <Image
@@ -71,11 +74,17 @@ export function SmallRoundBanner({
         <div
           className={cn(
             "absolute inset-0 z-10 flex flex-col items-center px-6 text-center md:px-12 lg:px-16",
-            isTall ? "py-14 md:py-20" : "py-10 md:py-14",
+            isTall ? "py-14 md:py-20 lg:py-24" : "py-14 md:py-20",
             hideAllCta ? "justify-center" : "justify-between",
           )}
         >
           <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4 md:gap-5 2xl:max-w-4xl">
+            {eyebrow ? (
+              <p className="text-sm text-white md:text-base lg:text-lg">
+                {eyebrow}
+              </p>
+            ) : null}
+
             <h2
               className={cn(
                 "text-2xl font-bold leading-tight tracking-tight md:text-4xl lg:text-[2.75rem]",

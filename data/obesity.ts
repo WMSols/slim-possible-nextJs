@@ -36,4 +36,20 @@ export const obesityData = {
       hideAllCta: false,
     },
   ],
+  infoBlocks: [
+    {
+      title: "The Biology Behind Weight Loss",
+      description:
+        "When you lose weight, your body can respond by increasing hunger and using less energy, making it harder to lose more weight and easier to regain it. That's one reason long-term weight management can require more than simply “eating less.”",
+      image: "/images/girl-fruits.png",
+      imageAlt: "Woman reaching for fruit at a table",
+    },
+    {
+      title: "Why It Matters in Pakistan",
+      description:
+        "Obesity and excess weight are becoming increasingly common in Pakistan and are linked with conditions such as diabetes, high blood pressure, heart disease, and other health concerns. Understanding the risks is an important first step toward taking action.",
+      image: "/images/mw-kitchen.png",
+      imageAlt: "Couple preparing food in a kitchen",
+    },
+  ],
 };

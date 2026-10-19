@@ -1,6 +1,68 @@
+export type RiskPill =
+  | { type: "text"; label: string }
+  | { type: "image"; src: string; alt: string };
+
 export const homeData = {
   title: "Home",
   description: "SlimPossible home page — content coming soon.",
+  healthRisks: {
+    title: "Health Risks Associated with Obesity",
+    rowOne: [
+      { type: "text", label: "Heart Disease" },
+      { type: "text", label: "Hypertension" },
+      {
+        type: "image",
+        src: "/images/man-sunset.jpg",
+        alt: "Person outdoors at sunset",
+      },
+      { type: "text", label: "Depression" },
+      { type: "text", label: "PCOS/PMOS" },
+      {
+        type: "image",
+        src: "/images/home/women-dark.png",
+        alt: "Person looking downward",
+      },
+    ] as RiskPill[],
+    rowTwo: [
+      {
+        type: "image",
+        src: "/images/home/women-selfie.png",
+        alt: "People smiling together",
+      },
+      { type: "text", label: "Stroke" },
+      { type: "text", label: "Sleep Apnea" },
+      {
+        type: "image",
+        src: "/images/jogging.png",
+        alt: "People jogging outdoors",
+      },
+      { type: "text", label: "Type 2 Diabetes" },
+    ] as RiskPill[],
+  },
+  healthTools: {
+    titleLineOne: "Know your numbers.",
+    titleLineTwo: "Understand your health.",
+    caption:
+      "Check your BMI and waist measurement for a quick indication of weight-related health risk",
+    backgroundImage: "/images/yoga.png",
+    disclaimer:
+      "These tools provide general health information and are not a medical diagnosis*",
+    stackedTitle:
+      "Start with two simple checks to better understand your weight-related health risk",
+    bmi: {
+      heading: "Check your BMI",
+      description: "Check your BMI and learn what it may mean for your health",
+      ctaText: "BMI Calculator",
+      stackedImage: "/images/health-check/women-sunshine.png",
+    },
+    waistRisk: {
+      heading: "Check your Waist-Risk",
+      description:
+        "Your waist measurement can provide additional information about your health risk",
+      ctaText: "Waist-Risk Calculator",
+      stackedImage: "/images/health-check/water-bottle.png",
+    },
+  },
   hero: {
     title: "Obesity is a treatable medical condition",
     subtitle:
@@ -10,7 +72,7 @@ export const homeData = {
     shopCgm: {
       label: "Shop CGM",
       message: "Monitor your glucose 24/7 with Sibionics",
-      href: "#",
+      href: "https://sibionics.bfbio.com/products/sibionics-gs1-cgm",
     },
     disclaimer: {
       title: "Disclaimer:",

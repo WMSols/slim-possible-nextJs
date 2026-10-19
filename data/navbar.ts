@@ -29,7 +29,7 @@ export const mainNavItems: NavItem[] = [
     ],
   },
   {
-    label: "Obesity",
+    label: "Understanding Obesity",
     href: "/obesity",
     description:
       "Obesity is more than weight — understand the factors that influence it and what you can do next",

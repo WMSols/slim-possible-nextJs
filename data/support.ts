@@ -10,6 +10,13 @@ export const supportData = {
     ctaLink: "#",
     exploreText: "Start your assessment",
   },
+  personalizedBanner: {
+    eyebrow: "It starts with a few quick questions about you",
+    title: "Get personalized support for your weight and health",
+    description:
+      "Connect with a qualified healthcare professional who can assess your individual health, discuss appropriate management options and help you decide what to do next",
+    backgroundImage: "/images/support/doctor.png",
+  },
   nextStepBanner: {
     title: "Ready to Take the Next Step?",
     description:

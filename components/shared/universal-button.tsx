@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { MouseEventHandler } from "react";
 import { motion } from "framer-motion";
 
 export type UniversalButtonVariant = "purple" | "orange" | "gradient" | "blue";
@@ -9,8 +10,10 @@ export type UniversalButtonVariant = "purple" | "orange" | "gradient" | "blue";
 export type UniversalButtonProps = {
   variant: UniversalButtonVariant;
   ctaText: string;
-  ctaLink: string;
+  ctaLink?: string;
   ctaClassName?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  type?: "button" | "submit";
 };
 
 const variantClasses: Record<UniversalButtonVariant, string> = {
@@ -21,12 +24,38 @@ const variantClasses: Record<UniversalButtonVariant, string> = {
   blue: "bg-brand-blue text-white",
 };
 
+const baseClass =
+  "inline-flex w-fit cursor-pointer items-center justify-center gap-3 rounded-full px-6 py-3 text-sm font-medium md:text-base";
+
 export function UniversalButton({
   variant,
   ctaText,
-  ctaLink,
+  ctaLink = "#",
   ctaClassName = "",
+  onClick,
+  type = "button",
 }: UniversalButtonProps) {
+  const className = `${baseClass} ${variantClasses[variant]} ${ctaClassName}`;
+
+  const content = (
+    <>
+      <span>{ctaText}</span>
+      {variant === "orange" ? (
+        <span className="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-navy md:size-11">
+          <Image
+            src="/images/m-logo.png"
+            alt="Marham"
+            width={28}
+            height={28}
+            className="object-contain"
+          />
+        </span>
+      ) : null}
+    </>
+  );
+
+  const asButton = Boolean(onClick) || type === "submit";
+
   return (
     <motion.div
       className="inline-flex w-fit"
@@ -34,23 +63,15 @@ export function UniversalButton({
       whileTap={{ scale: 0.98 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
     >
-      <Link
-        href={ctaLink || "#"}
-        className={`inline-flex w-fit items-center justify-center gap-3 rounded-full px-6 py-3 text-sm font-medium md:text-base ${variantClasses[variant]} ${ctaClassName}`}
-      >
-        <span>{ctaText}</span>
-        {variant === "orange" ? (
-          <span className="relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-brand-navy md:size-11">
-            <Image
-              src="/images/m-logo.png"
-              alt="Marham"
-              width={28}
-              height={28}
-              className="object-contain"
-            />
-          </span>
-        ) : null}
-      </Link>
+      {asButton ? (
+        <button type={type} onClick={onClick} className={className}>
+          {content}
+        </button>
+      ) : (
+        <Link href={ctaLink || "#"} className={className}>
+          {content}
+        </Link>
+      )}
     </motion.div>
   );
 }

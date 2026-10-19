@@ -11,6 +11,23 @@ export const communityAndMediaData = {
     ],
     exploreText: "Explore",
   },
+  intro: {
+    beforeBrand: "Explore ",
+    afterBrand:
+      " podcasts, expert discussions, community events, and initiatives bringing obesity awareness and healthier living into everyday life",
+  },
+  exploreCards: [
+    {
+      id: "see-events",
+      label: "See Our Events",
+      image: "/images/jogging.png",
+    },
+    {
+      id: "explore-media",
+      label: "Explore Media",
+      image: "/images/interview.png",
+    },
+  ],
   nextStepBanner: {
     title: "Ready to Take the Next Step?",
     description:

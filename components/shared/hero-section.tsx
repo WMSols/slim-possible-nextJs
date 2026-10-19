@@ -82,7 +82,7 @@ export function HeroSection({
   subTitleClassName = "",
   ctaText,
   ctaLink = "#",
-  shopCgmHref = "#",
+  shopCgmHref = "https://sibionics.bfbio.com",
   shopCgmLabel = "Shop CGM",
   shopCgmMessage = "Monitor your glucose 24/7 with Sibionics",
   disclaimer,
@@ -151,6 +151,8 @@ export function HeroSection({
           <span>{shopCgmMessage}</span>
           <a
             href={shopCgmHref}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 text-sm font-medium text-brand-mint-dark transition-colors hover:bg-white"
           >
             {shopCgmLabel}
@@ -207,7 +209,7 @@ export function HeroSection({
             }`}
           >
             <h1
-              className={`text-3xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl ${titleClassName}`}
+              className={`text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl ${titleClassName}`}
             >
               {title}
             </h1>
@@ -231,106 +233,7 @@ export function HeroSection({
                 />
               </div>
             ) : null}
-
-            {isHome && !chatOpen ? (
-              <div className="pt-4">
-                <button
-                  type="button"
-                  onClick={() => setChatOpen(true)}
-                  className="inline-flex w-fit items-center gap-2 rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to px-6 py-3 text-sm font-medium text-white shadow-md transition hover:brightness-105 md:text-base"
-                >
-                  <MessageCircle className="size-4 md:size-5" aria-hidden />
-                  Ask SlimPossible&apos;s AI
-                </button>
-              </div>
-            ) : null}
           </div>
-
-          <AnimatePresence>
-            {isHome && chatOpen ? (
-              <motion.div
-                initial={{ opacity: 0, y: 24, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 16, scale: 0.96 }}
-                transition={{ type: "spring", stiffness: 340, damping: 28 }}
-                className="absolute bottom-24 right-4 z-30 w-[min(100%-2rem,22rem)] md:bottom-28 md:right-8 md:w-[24rem]"
-              >
-                <div className="flex flex-col overflow-hidden rounded-[1.5rem] bg-linear-to-b from-[#f7d5c8] to-[#c9b6e0] p-4 shadow-2xl md:rounded-[1.75rem] md:p-5">
-                  <div className="mb-3 flex items-center justify-between">
-                    <p className="text-sm font-medium text-zinc-800">
-                      SlimPossible AI
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => setChatOpen(false)}
-                      className="rounded-full p-1.5 text-zinc-600 transition hover:bg-white/50 hover:text-zinc-900"
-                      aria-label="Close chat"
-                    >
-                      <X className="size-4" />
-                    </button>
-                  </div>
-
-                  <div className="flex max-h-[36vh] flex-col gap-2.5 overflow-y-auto pr-1 md:max-h-[40vh]">
-                    {messages.length === 0
-                      ? aiSuggestions.map((suggestion) => (
-                          <button
-                            key={suggestion}
-                            type="button"
-                            onClick={() => sendMessage(suggestion)}
-                            className="w-fit max-w-full rounded-full bg-white px-4 py-2.5 text-left text-sm text-zinc-800 shadow-sm transition hover:bg-white/90"
-                          >
-                            {suggestion}
-                          </button>
-                        ))
-                      : null}
-
-                    {messages.map((message) => (
-                      <div
-                        key={message.id}
-                        className={`w-fit max-w-[95%] rounded-2xl px-4 py-2.5 text-sm ${
-                          message.role === "user"
-                            ? "ml-auto bg-brand-blue text-white"
-                            : "bg-white text-zinc-800 shadow-sm"
-                        }`}
-                      >
-                        {message.text}
-                      </div>
-                    ))}
-
-                    {isTyping ? (
-                      <div className="flex w-fit items-center gap-1 rounded-2xl bg-white px-4 py-3 shadow-sm">
-                        <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:0ms]" />
-                        <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:150ms]" />
-                        <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:300ms]" />
-                      </div>
-                    ) : null}
-                  </div>
-
-                  <form
-                    onSubmit={onSubmit}
-                    className="mt-4 flex items-center gap-2 rounded-2xl bg-[#dce9f5] px-3 py-2 md:px-4 md:py-2.5"
-                  >
-                    <input
-                      type="text"
-                      value={inputValue}
-                      onChange={(event) => setInputValue(event.target.value)}
-                      placeholder={aiPlaceholder}
-                      className="min-w-0 flex-1 bg-transparent text-sm text-zinc-800 outline-none placeholder:text-zinc-500"
-                      aria-label="Ask SlimPossible AI"
-                    />
-                    <button
-                      type="submit"
-                      disabled={isTyping || !inputValue.trim()}
-                      className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-blue text-white transition enabled:hover:brightness-110 disabled:opacity-50"
-                      aria-label="Send message"
-                    >
-                      <ArrowRight className="size-5" />
-                    </button>
-                  </form>
-                </div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
 
           <AnimatePresence>
             {isHome && toastOpen && disclaimer ? (
@@ -339,7 +242,7 @@ export function HeroSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -32 }}
                 transition={{ type: "spring", stiffness: 320, damping: 28 }}
-                className="absolute bottom-6 left-4 z-20 max-w-[16rem] rounded-xl bg-white p-3 shadow-md md:bottom-8 md:left-8 md:max-w-[18rem] md:p-4"
+                className="absolute bottom-36 left-4 z-20 max-w-[16rem] rounded-xl bg-white p-3 shadow-md sm:bottom-20 md:bottom-24 md:left-8 md:max-w-[18rem] md:p-4"
                 role="status"
               >
                 <button
@@ -358,24 +261,131 @@ export function HeroSection({
             ) : null}
           </AnimatePresence>
 
-          {showExplore ? (
-            <div className="absolute bottom-6 right-4 z-20 flex items-center gap-3 md:bottom-8 md:right-8">
-              {exploreText ? (
-                <span className="text-sm text-white/90 md:text-base">
-                  {exploreText}
-                </span>
+          {showExplore || (isHome && !chatOpen) ? (
+            <div
+              className={`absolute right-4 z-20 flex flex-col items-end gap-3 md:right-8 ${
+                isHome
+                  ? "bottom-20 md:bottom-24"
+                  : "bottom-6 md:bottom-8"
+              }`}
+            >
+              {isHome && !chatOpen ? (
+                <button
+                  type="button"
+                  onClick={() => setChatOpen(true)}
+                  className="flex size-11 items-center justify-center rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to text-white shadow-md transition hover:brightness-105"
+                  aria-label="Ask SlimPossible's AI"
+                >
+                  <MessageCircle className="size-5" aria-hidden />
+                </button>
               ) : null}
-              <Link
-                href="#explore"
-                className="flex size-12 items-center justify-center rounded-full border-2 border-brand-green text-brand-green transition hover:bg-brand-green/10 md:size-14"
-                aria-label={exploreText || "Explore next section"}
-              >
-                <ArrowDown className="size-5 md:size-6" strokeWidth={2.25} />
-              </Link>
+
+              {showExplore ? (
+                <div className="flex items-center gap-3">
+                  {exploreText ? (
+                    <span className="text-sm text-white/90 md:text-base">
+                      {exploreText}
+                    </span>
+                  ) : null}
+                  <Link
+                    href="#explore"
+                    className="flex size-12 items-center justify-center rounded-full border-2 border-brand-green text-brand-green transition hover:bg-brand-green/10 md:size-14"
+                    aria-label={exploreText || "Explore next section"}
+                  >
+                    <ArrowDown className="size-5 md:size-6" strokeWidth={2.25} />
+                  </Link>
+                </div>
+              ) : null}
             </div>
           ) : null}
         </div>
       </div>
+
+      <AnimatePresence>
+        {isHome && chatOpen ? (
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 340, damping: 28 }}
+            className="fixed bottom-4 right-4 z-[80] w-[min(100%-2rem,22rem)] md:bottom-6 md:right-8 md:w-[24rem]"
+          >
+            <div className="flex max-h-[calc(100dvh-2rem)] flex-col overflow-hidden rounded-[1.5rem] bg-linear-to-b from-[#f7d5c8] to-[#c9b6e0] p-4 shadow-2xl md:rounded-[1.75rem] md:p-5">
+              <div className="mb-3 flex items-center justify-between">
+                <p className="text-sm font-medium text-zinc-800">
+                  SlimPossible AI
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setChatOpen(false)}
+                  className="rounded-full p-1.5 text-zinc-600 transition hover:bg-white/50 hover:text-zinc-900"
+                  aria-label="Close chat"
+                >
+                  <X className="size-4" />
+                </button>
+              </div>
+
+              <div className="flex max-h-[36vh] flex-col gap-2.5 overflow-y-auto pr-1 md:max-h-[40vh]">
+                {messages.length === 0
+                  ? aiSuggestions.map((suggestion) => (
+                      <button
+                        key={suggestion}
+                        type="button"
+                        onClick={() => sendMessage(suggestion)}
+                        className="w-fit max-w-full rounded-full bg-white px-4 py-2.5 text-left text-sm text-zinc-800 shadow-sm transition hover:bg-white/90"
+                      >
+                        {suggestion}
+                      </button>
+                    ))
+                  : null}
+
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`w-fit max-w-[95%] rounded-2xl px-4 py-2.5 text-sm ${
+                      message.role === "user"
+                        ? "ml-auto bg-brand-blue text-white"
+                        : "bg-white text-zinc-800 shadow-sm"
+                    }`}
+                  >
+                    {message.text}
+                  </div>
+                ))}
+
+                {isTyping ? (
+                  <div className="flex w-fit items-center gap-1 rounded-2xl bg-white px-4 py-3 shadow-sm">
+                    <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:0ms]" />
+                    <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:150ms]" />
+                    <span className="size-1.5 animate-bounce rounded-full bg-zinc-400 [animation-delay:300ms]" />
+                  </div>
+                ) : null}
+              </div>
+
+              <form
+                onSubmit={onSubmit}
+                className="mt-4 flex items-center gap-2 rounded-2xl bg-[#dce9f5] px-3 py-2 md:px-4 md:py-2.5"
+              >
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={(event) => setInputValue(event.target.value)}
+                  placeholder={aiPlaceholder}
+                  className="min-w-0 flex-1 bg-transparent text-sm text-zinc-800 outline-none placeholder:text-zinc-500"
+                  aria-label="Ask SlimPossible AI"
+                />
+                <button
+                  type="submit"
+                  disabled={isTyping || !inputValue.trim()}
+                  className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-blue text-white transition enabled:hover:brightness-110 disabled:opacity-50"
+                  aria-label="Send message"
+                >
+                  <ArrowRight className="size-5" />
+                </button>
+              </form>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </section>
   );
 }
