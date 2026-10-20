@@ -20,6 +20,8 @@ export type HeroSectionProps = {
   subtitle?: string;
   subtitleHighlights?: string[];
   isSupport?: boolean;
+  /** Left-align the hero copy block (About, Support). */
+  alignLeft?: boolean;
   isHome?: boolean;
   showExplore?: boolean;
   exploreText?: string;
@@ -75,6 +77,7 @@ export function HeroSection({
   subtitle,
   subtitleHighlights = [],
   isSupport = false,
+  alignLeft = false,
   isHome = false,
   showExplore = false,
   exploreText,
@@ -102,9 +105,7 @@ export function HeroSection({
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
-  const alignClass = isSupport
-    ? "items-start text-left"
-    : "items-center text-center";
+  const isLeftAligned = isSupport || alignLeft;
 
   const sendMessage = useCallback(
     (rawText: string) => {
@@ -147,16 +148,16 @@ export function HeroSection({
       className={`relative w-full ${isHome ? "bg-brand-mint pt-0" : ""}`}
     >
       {isHome ? (
-        <div className="relative z-40 flex items-center justify-center gap-3 bg-brand-mint px-4 py-3 text-center text-sm text-zinc-800 md:py-3.5 md:text-base">
+        <div className="relative z-40 flex items-end justify-center gap-2 px-3 pt-5 pb-1.5 text-center text-xs text-zinc-800 md:gap-3 md:px-4 md:pt-7 md:pb-2.5 md:text-base">
           <span>{shopCgmMessage}</span>
           <a
             href={shopCgmHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 text-sm font-medium text-brand-mint-dark transition-colors hover:bg-white"
+            className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-medium text-brand-mint-dark transition-colors hover:bg-white/90 md:gap-1.5 md:px-3 md:py-1.5 md:text-sm"
           >
             {shopCgmLabel}
-            <ArrowRight className="size-3.5" aria-hidden />
+            <ArrowRight className="size-3 md:size-3.5" aria-hidden />
           </a>
         </div>
       ) : null}
@@ -164,7 +165,7 @@ export function HeroSection({
       <div
         className={`relative isolate overflow-hidden ${
           isHome
-            ? "min-h-[calc(100dvh-3.25rem)] rounded-t-[2rem] md:rounded-t-[2.5rem] lg:rounded-t-[3rem]"
+            ? "min-h-[calc(100dvh-3.5rem)] rounded-t-[2rem] md:min-h-[calc(100dvh-4.5rem)] md:rounded-t-[2.5rem] lg:rounded-t-[3rem]"
             : "min-h-dvh"
         }`}
       >
@@ -202,22 +203,30 @@ export function HeroSection({
         )}
         <div className="absolute inset-0 bg-black/40" aria-hidden />
 
-        <div className="relative z-10 flex min-h-[inherit] flex-col justify-center px-5 py-10 pt-24 md:px-10 md:pt-28 lg:px-14">
+        <div
+          className={`relative z-10 flex min-h-[inherit] flex-col px-5 pb-10 md:px-10 md:pt-28 lg:px-14 ${
+            isHome
+              ? "justify-start pt-[7.25rem] md:justify-center"
+              : "justify-center pt-24"
+          }`}
+        >
           <div
-            className={`mx-auto flex w-full max-w-3xl flex-col gap-4 md:gap-5 ${alignClass} ${
-              isSupport ? "mx-0 max-w-2xl" : ""
+            className={`flex w-full flex-col gap-2.5 md:gap-5 ${
+              isLeftAligned
+                ? "mr-auto max-w-2xl items-start text-left lg:max-w-3xl"
+                : "mx-auto max-w-3xl items-center text-center"
             }`}
           >
             <h1
-              className={`text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl ${titleClassName}`}
+              className={`text-[1.65rem] font-semibold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl ${titleClassName}`}
             >
               {title}
             </h1>
 
             {subtitle ? (
               <p
-                className={`max-w-2xl text-base leading-relaxed text-white/95 md:text-xl ${
-                  isSupport ? "" : "mx-auto"
+                className={`max-w-2xl text-sm leading-snug text-white/95 md:text-xl md:leading-relaxed ${
+                  isLeftAligned ? "" : "mx-auto"
                 } ${subTitleClassName}`}
               >
                 {highlightSubtitle(subtitle, subtitleHighlights)}
@@ -242,60 +251,54 @@ export function HeroSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -32 }}
                 transition={{ type: "spring", stiffness: 320, damping: 28 }}
-                className="absolute bottom-36 left-4 z-20 max-w-[16rem] rounded-xl bg-white p-3 shadow-md sm:bottom-20 md:bottom-24 md:left-8 md:max-w-[18rem] md:p-4"
+                className="absolute bottom-28 left-3 z-20 max-w-[11.5rem] rounded-lg bg-white p-2 shadow-md sm:bottom-20 md:bottom-24 md:left-8 md:max-w-[18rem] md:rounded-xl md:p-4"
                 role="status"
               >
                 <button
                   type="button"
                   onClick={() => setToastOpen(false)}
-                  className="absolute right-2 top-2 rounded p-1 text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-800"
+                  className="absolute right-1 top-1 rounded p-0.5 text-zinc-500 transition hover:bg-zinc-100 hover:text-zinc-800 md:right-2 md:top-2 md:p-1"
                   aria-label="Dismiss disclaimer"
                 >
-                  <X className="size-4" />
+                  <X className="size-3 md:size-4" />
                 </button>
-                <p className="pr-5 text-sm leading-snug text-zinc-900">
-                  <span className="font-semibold">{disclaimer.title}</span>{" "}
+                <p className="pr-4 text-[8px] leading-snug text-zinc-900 md:pr-5 md:text-sm">
+                  <span className="font-semibold">{disclaimer.title}<br /></span>{" "}
                   {disclaimer.body}
                 </p>
               </motion.aside>
             ) : null}
           </AnimatePresence>
 
-          {showExplore || (isHome && !chatOpen) ? (
-            <div
-              className={`absolute right-4 z-20 flex flex-col items-end gap-3 md:right-8 ${
-                isHome
-                  ? "bottom-20 md:bottom-24"
-                  : "bottom-6 md:bottom-8"
-              }`}
+          {isHome && !chatOpen ? (
+            <button
+              type="button"
+              onClick={() => setChatOpen(true)}
+              className="absolute bottom-36 right-4 z-20 flex size-10 items-center justify-center rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to text-white shadow-md transition hover:brightness-105 md:bottom-40 md:right-8 md:size-11"
+              aria-label="Ask SlimPossible's AI"
             >
-              {isHome && !chatOpen ? (
-                <button
-                  type="button"
-                  onClick={() => setChatOpen(true)}
-                  className="flex size-11 items-center justify-center rounded-full bg-linear-to-r from-brand-gradient-from to-brand-gradient-to text-white shadow-md transition hover:brightness-105"
-                  aria-label="Ask SlimPossible's AI"
-                >
-                  <MessageCircle className="size-5" aria-hidden />
-                </button>
-              ) : null}
+              <MessageCircle className="size-4 md:size-5" aria-hidden />
+            </button>
+          ) : null}
 
-              {showExplore ? (
-                <div className="flex items-center gap-3">
-                  {exploreText ? (
-                    <span className="text-sm text-white/90 md:text-base">
-                      {exploreText}
-                    </span>
-                  ) : null}
-                  <Link
-                    href="#explore"
-                    className="flex size-12 items-center justify-center rounded-full border-2 border-brand-green text-brand-green transition hover:bg-brand-green/10 md:size-14"
-                    aria-label={exploreText || "Explore next section"}
-                  >
-                    <ArrowDown className="size-5 md:size-6" strokeWidth={2.25} />
-                  </Link>
-                </div>
+          {showExplore ? (
+            <div
+              className={`absolute z-20 flex items-center gap-2.5 md:gap-3 ${
+                isHome ? "bottom-16 md:bottom-24" : "bottom-6 md:bottom-8"
+              } left-0 right-0 justify-center md:left-auto md:right-8 md:justify-end`}
+            >
+              {exploreText ? (
+                <span className="text-sm text-white/90 md:text-base">
+                  {exploreText}
+                </span>
               ) : null}
+              <Link
+                href="#explore"
+                className="flex size-6 items-center justify-center rounded-full border-2 border-brand-green text-brand-green transition hover:bg-brand-green/10 md:size-8"
+                aria-label={exploreText || "Explore next section"}
+              >
+                <ArrowDown className="size-4" strokeWidth={2.25} />
+              </Link>
             </div>
           ) : null}
         </div>

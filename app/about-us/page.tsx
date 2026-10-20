@@ -12,6 +12,7 @@ export default function AboutUsPage() {
   return (
     <>
       <HeroSection
+        alignLeft
         showExplore
         title={hero.title}
         subtitle={hero.subtitle}

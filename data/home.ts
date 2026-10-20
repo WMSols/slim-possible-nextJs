@@ -43,7 +43,7 @@ export const homeData = {
     titleLineOne: "Know your numbers.",
     titleLineTwo: "Understand your health.",
     caption:
-      "Check your BMI and waist measurement for a quick indication of weight-related health risk",
+      "Check your BMI and waist measurement for a quick indication of weight-related health risk.",
     backgroundImage: "/images/yoga.png",
     disclaimer:
       "These tools provide general health information and are not a medical diagnosis*",

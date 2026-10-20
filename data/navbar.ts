@@ -106,6 +106,7 @@ export const footerLinkGroups = [
       { label: "Obesity", href: "/obesity" },
       { label: "Support", href: "/support" },
       { label: "SlimPossible AI", href: "/slim-possible-ai" },
+      { label: "Legacy AI", href: "/legacy-ai" },
     ],
   },
   {

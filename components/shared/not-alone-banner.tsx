@@ -40,6 +40,9 @@ const SECONDARY_CONTENT = {
 
 export function NotAloneBanner({ variant = "default" }: NotAloneBannerProps) {
   const isSecondary = variant === "secondary";
+  const titleBreak = DEFAULT_CONTENT.title.indexOf(" obesity");
+  const titleLead = DEFAULT_CONTENT.title.slice(0, titleBreak);
+  const titleTail = DEFAULT_CONTENT.title.slice(titleBreak + 1);
 
   return (
     <section className="w-full  py-10  md:py-14 lg:py-16">
@@ -92,15 +95,16 @@ export function NotAloneBanner({ variant = "default" }: NotAloneBannerProps) {
             </div>
           </div>
         ) : (
-          <div className="relative z-10 flex h-full min-h-[26rem] flex-col justify-start px-6 py-12 md:min-h-[36rem] md:px-12 md:py-16 lg:min-h-[780px] lg:px-16 lg:py-20 xl:px-20">
-            <div className="flex max-w-xl flex-col gap-4 md:max-w-2xl md:gap-5 lg:max-w-3xl">
-              <h2 className="text-2xl font-bold leading-tight tracking-tight text-brand-green md:text-4xl lg:text-5xl">
-                {DEFAULT_CONTENT.title}
+          <div className="relative z-10 flex h-full min-h-[26rem] flex-col justify-center px-6 py-12 md:min-h-[36rem] md:justify-start md:px-14 md:pt-24 md:pb-16 lg:min-h-[780px] lg:px-20 lg:pt-32 lg:pb-20 xl:px-28">
+            <div className="flex w-full max-w-[36.25rem] flex-col items-start gap-3 md:gap-4">
+              <h2 className="text-2xl font-bold leading-[1.15] tracking-tight text-brand-green md:text-4xl lg:text-5xl">
+                {titleLead}
+                <br className="hidden md:block" /> {titleTail}
               </h2>
-              <p className="max-w-xl text-sm leading-relaxed text-white md:text-base lg:max-w-2xl lg:text-lg">
+              <p className="text-sm leading-relaxed text-white md:text-lg lg:text-xl lg:leading-relaxed">
                 {DEFAULT_CONTENT.description}
               </p>
-              <div className="flex flex-col items-start gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
                 <UniversalButton
                   variant="orange"
                   ctaText={DEFAULT_CONTENT.orangeCta.text}

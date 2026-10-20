@@ -123,7 +123,7 @@ function CalculatorModal({
           {kind === "bmi" ? "BMI Calculator" : "Waist-Risk Calculator"}
         </h3>
         <p className="mt-2 text-sm text-zinc-600">
-          Dummy demo calculator for layout testing. Replace with a clinical tool
+          Dummy demo calculator for layout testing. Can be replaced with a clinical tool
           later if needed.
         </p>
 
@@ -291,24 +291,26 @@ export function HealthToolsSection({
           </>
         ) : (
           <>
-            <div className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
+            <div className="mx-auto mt-8 mb-8 max-w-3xl text-center md:mb-10">
               <h2
                 id="health-tools-heading"
-                className="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl lg:text-5xl"
+                className="text-3xl font-semibold tracking-tight text-zinc-900 md:text-4xl lg:text-5xl"
               >
                 <span className="block">{healthTools.titleLineOne}</span>
                 <span className="block">{healthTools.titleLineTwo}</span>
               </h2>
-              <p className="mt-4 text-sm text-brand-purple md:text-base lg:text-lg">
+              <p className="mt-8  text-sm font-semibold text-[#60269E] md:text-base lg:text-2xl">
                 {healthTools.caption}
               </p>
             </div>
 
-            {/* 20px under tall SmallRoundBanner: md 700→680, lg 750→730 */}
+            {/* Image uses fill, so this box is the height. Below 2xl the card is
+                max-w-5xl, and 2:1 keeps a laptop from stretching to ~730px.
+                At 2xl the card is max-w-7xl and 1280/730 keeps that wide layout. */}
             <div
               className={cn(
                 "relative isolate overflow-hidden rounded-[25px] md:rounded-[35px]",
-                "min-h-[26rem] md:min-h-[680px] lg:min-h-[730px]",
+                "min-h-[26rem] md:aspect-[2/1] md:min-h-0 2xl:aspect-[1280/730]",
               )}
             >
               <Image
@@ -316,54 +318,58 @@ export function HealthToolsSection({
                 alt=""
                 fill
                 className="object-cover object-center"
-                sizes="(max-width: 1536px) 100vw, 1280px"
+                sizes="(max-width: 1536px) 100vw, 1200px"
                 priority={false}
               />
               <div className="absolute inset-0 bg-black/40" aria-hidden />
 
-              <div className="relative z-10 grid h-full min-h-[26rem] grid-cols-1 md:min-h-[680px] md:grid-cols-2 lg:min-h-[730px]">
-                <div className="flex flex-col justify-center gap-3 px-6 py-10 md:px-10 lg:px-14">
-                  <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
-                    {healthTools.bmi.heading}
-                  </h3>
-                  <p className="max-w-sm text-sm leading-relaxed text-white/95 md:text-base">
-                    {healthTools.bmi.description}
-                  </p>
-                  <div className="pt-2">
-                    <UniversalButton
-                      variant="purple"
-                      ctaText={healthTools.bmi.ctaText}
-                      onClick={() => setOpenCalculator("bmi")}
-                      ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
-                    />
-                  </div>
-                </div>
-
+              <div className="relative z-10 grid h-full min-h-[26rem] grid-cols-1 md:min-h-full md:grid-cols-2">
                 <div
                   className="mx-6 h-px bg-white/70 md:absolute md:inset-y-[18%] md:left-1/2 md:mx-0 md:h-auto md:w-px md:-translate-x-1/2"
                   aria-hidden
                 />
 
-                <div className="flex flex-col justify-center gap-3 px-6 py-10 md:px-10 lg:px-14">
-                  <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
-                    {healthTools.waistRisk.heading}
-                  </h3>
-                  <p className="max-w-sm text-sm leading-relaxed text-white/95 md:text-base">
-                    {healthTools.waistRisk.description}
-                  </p>
-                  <div className="pt-2">
-                    <UniversalButton
-                      variant="purple"
-                      ctaText={healthTools.waistRisk.ctaText}
-                      onClick={() => setOpenCalculator("waist")}
-                      ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
-                    />
+                <div className="flex flex-col items-center justify-center px-6 py-10 text-center md:px-8 lg:px-12">
+                  <div className="flex max-w-sm flex-col items-center gap-3">
+                    <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
+                      {healthTools.bmi.heading}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-white/95 md:text-base">
+                      {healthTools.bmi.description}
+                    </p>
+                    <div className="pt-2">
+                      <UniversalButton
+                        variant="purple"
+                        ctaText={healthTools.bmi.ctaText}
+                        onClick={() => setOpenCalculator("bmi")}
+                        ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center justify-center px-6 py-10 text-center md:px-8 lg:px-12">
+                  <div className="flex max-w-sm flex-col items-center gap-3">
+                    <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
+                      {healthTools.waistRisk.heading}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-white/95 md:text-base">
+                      {healthTools.waistRisk.description}
+                    </p>
+                    <div className="pt-2">
+                      <UniversalButton
+                        variant="purple"
+                        ctaText={healthTools.waistRisk.ctaText}
+                        onClick={() => setOpenCalculator("waist")}
+                        ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <p className="mt-5 text-center text-xs text-zinc-500 md:text-sm">
+            <p className="mt-5 sm:ml-10 text-xs text-zinc-500 md:text-sm">
               {healthTools.disclaimer}
             </p>
           </>

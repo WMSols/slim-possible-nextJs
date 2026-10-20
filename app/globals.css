@@ -3,12 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --brand-purple: #7b3fa0;
+  --brand-purple: #60269E;
   --brand-purple-light: #c4a0d8;
-  --brand-orange: #e85a2b;
-  --brand-blue: #005282;
-  --brand-navy: #0b2c4a;
-  --brand-mint: #b8e4dc;
+  --brand-orange: #E74E3D;
+  --brand-blue: #014E78;
+  --brand-navy: #014E78;
+  --brand-mint: #01AFA926;
   --brand-mint-dark: #2a8a7a;
   --brand-green: #2db84c;
   --brand-gradient-from: #8b6bb5;

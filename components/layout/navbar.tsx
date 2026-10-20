@@ -96,26 +96,36 @@ export function Navbar() {
   const renderLogo = (size: "desktop" | "mobile") => (
     <span
       className={cn(
-        "flex flex-col leading-tight text-white",
-        size === "desktop" ? "gap-0.5" : "gap-0",
+        "flex flex-col text-white",
+        size === "desktop" ? "gap-0.5" : "gap-px",
       )}
     >
+      <Image
+        src="/images/slim-possible-gp.png"
+        alt="#SlimPossible"
+        width={220}
+        height={40}
+        className={cn(
+          "w-auto",
+          size === "desktop" ? "h-7" : "h-5",
+        )}
+        priority
+      />
       <span
         className={cn(
-          "font-semibold tracking-tight",
-          size === "desktop" ? "text-xl" : "text-lg",
+          "whitespace-nowrap text-white",
+          size === "desktop" ? "text-[11px]" : "text-[9px]",
         )}
       >
-        <span className="text-brand-green">#Slim</span>
-        <span className="text-brand-purple-light">Possible</span>
-      </span>
-      <span
-        className={cn(
-          "text-white/70",
-          size === "desktop" ? "text-[11px]" : "text-[10px]",
-        )}
-      >
-        Diet, Stride &amp; Medical Advice
+        <span
+          className={cn(
+            "italic",
+            size === "desktop" ? "text-[8px]" : "text-[7px]",
+          )}
+        >
+          with
+        </span>{" "}
+        Diet, Stride &amp; Medical Advise
       </span>
     </span>
   );
@@ -213,7 +223,7 @@ export function Navbar() {
     <header
       className={cn(
         "pointer-events-none fixed left-0 right-0 z-50 mx-auto w-[90%]",
-        isHomePage ? "top-14 md:top-16" : "top-6",
+        isHomePage ? "top-14 md:top-[5.5rem]" : "top-4 md:top-6",
       )}
     >
       {/* Desktop */}
@@ -366,7 +376,7 @@ export function Navbar() {
       {/* Mobile collapsed bar */}
       <div
         className={cn(
-          "pointer-events-auto flex items-center justify-between rounded-[20px] px-4 py-3 shadow-[0_2px_12px_rgba(0,0,0,0.08)] xl:hidden",
+          "pointer-events-auto flex items-center justify-between rounded-[25px] px-3 py-1.5 shadow-[0_2px_12px_rgba(0,0,0,0.08)] xl:hidden",
           NAV_BG,
         )}
       >
@@ -375,21 +385,21 @@ export function Navbar() {
             onSubmit={handleSearchSubmit}
             className="flex w-full items-center gap-2"
           >
-            <div className="flex min-w-0 flex-1 items-center rounded-full bg-[#222222] px-4 py-2">
+            <div className="flex min-w-0 flex-1 items-center rounded-full bg-[#222222] px-3 py-1.5">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search"
-                className="w-full bg-transparent text-base text-white outline-none placeholder:text-[#999999]"
+                className="w-full bg-transparent text-sm text-white outline-none placeholder:text-[#999999]"
               />
             </div>
             <button
               type="submit"
-              className="shrink-0 rounded-[12px] bg-white p-2.5 text-black"
+              className="shrink-0 rounded-[10px] bg-white p-2 text-black"
               aria-label="Submit search"
             >
-              <Search className="h-5 w-5" />
+              <Search className="h-4 w-4" />
             </button>
             <button
               type="button"
@@ -397,7 +407,7 @@ export function Navbar() {
               onClick={() => setMobileSearchOpen(false)}
               aria-label="Close search"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </button>
           </form>
         ) : (
@@ -405,23 +415,23 @@ export function Navbar() {
             <Link href="/" className="flex min-w-0 shrink-0 items-center">
               {renderLogo("mobile")}
             </Link>
-            <div className="flex shrink-0 items-center gap-1">
+            <div className="flex shrink-0 items-center gap-0.5">
               <button
-                className="p-2 text-white"
+                className="p-1.5 text-white"
                 onClick={() => setMobileSearchOpen(true)}
                 aria-label="Open search"
               >
-                <Search className="h-5 w-5" />
+                <Search className="h-4 w-4" />
               </button>
               <button
-                className="p-2 text-white"
+                className="p-1.5 text-white"
                 onClick={() => {
                   setMobileSearchOpen(false);
                   setMobileOpen(true);
                 }}
                 aria-label="Open menu"
               >
-                <Menu className="h-8 w-8" strokeWidth={2} />
+                <Menu className="h-6 w-6" strokeWidth={2} />
               </button>
             </div>
           </>

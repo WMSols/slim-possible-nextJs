@@ -7,31 +7,20 @@ import { cn } from "@/lib/utils";
 function Pill({ item }: { item: RiskPill }) {
   if (item.type === "image") {
     return (
-      <div
-        className={cn(
-          "relative shrink-0 overflow-hidden rounded-full",
-          "h-10 w-[4.5rem] sm:h-12 sm:w-24 md:h-14 md:w-32",
-        )}
-      >
+      <div className="relative h-16 w-52 shrink-0 overflow-hidden rounded-full">
         <Image
           src={item.src}
           alt={item.alt}
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 72px, 128px"
+          sizes="208px"
         />
       </div>
     );
   }
 
   return (
-    <span
-      className={cn(
-        "shrink-0 rounded-full border border-white/70 text-white",
-        "px-3 py-1.5 text-xs sm:px-4 sm:py-2 sm:text-sm",
-        "md:px-5 md:py-2.5 md:text-base",
-      )}
-    >
+    <span className="shrink-0 whitespace-nowrap rounded-full border border-white/70 px-6 py-3 text-lg text-white">
       {item.label}
     </span>
   );
@@ -50,7 +39,7 @@ function MarqueeRow({
     <div className="relative w-full overflow-hidden">
       <div
         className={cn(
-          "flex w-max items-center gap-2 sm:gap-3 md:gap-4",
+          "flex w-max items-center gap-4",
           direction === "left"
             ? "animate-marquee-left"
             : "animate-marquee-right",
@@ -73,19 +62,30 @@ export function HealthRisksBanner() {
   return (
     <section
       id="explore"
-      className="relative z-20 -mt-[3.25rem] px-0 md:-mt-14"
+      className="relative z-20 mt-0 px-0 md:-mt-14"
       aria-labelledby="health-risks-heading"
     >
-      <div className="overflow-hidden rounded-t-[25px] bg-[#6b2d8b] px-0 pb-8 pt-10 md:rounded-t-[35px] md:pb-12 md:pt-14">
+      <div className="overflow-hidden rounded-[28px] bg-[#60269E] px-0 pb-10 pt-12 md:rounded-[35px] md:pb-22 md:pt-22">
         <h2
           id="health-risks-heading"
-          className="mb-6 px-4 text-center text-2xl font-semibold tracking-tight sm:mb-8 sm:text-3xl md:mb-10 md:text-4xl lg:text-5xl"
+          className="mb-10 px-6 text-center text-4xl font-medium leading-tight tracking-tight md:mb-14 lg:text-5xl"
         >
-          <span className="text-[#d4b8e8]">Health Risks Associated with </span>
-          <span className="font-bold text-white">Obesity</span>
+          <span className="text-[#D4B7F8]">
+            <span className="sm:hidden">
+              Health Risks
+              <br />
+              Associated
+              <br />
+              with{" "}
+            </span>
+            <span className="hidden sm:inline">
+              Health Risks Associated with{" "}
+            </span>
+          </span>
+          <span className="font-medium text-white">Obesity</span>
         </h2>
 
-        <div className="flex flex-col gap-2.5 sm:gap-3 md:gap-4">
+        <div className="flex flex-col gap-4">
           <MarqueeRow items={healthRisks.rowOne} direction="left" />
           <MarqueeRow items={healthRisks.rowTwo} direction="right" />
         </div>

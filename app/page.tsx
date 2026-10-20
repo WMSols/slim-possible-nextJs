@@ -18,6 +18,7 @@ export default function HomePage() {
         isHome
         showExplore
         title={hero.title}
+        titleClassName="text-4xl md:text-5xl lg:text-6xl -mt-10 leading-normal"
         subtitle={hero.subtitle}
         subtitleHighlights={hero.subtitleHighlights}
         backgroundImage={hero.backgroundImage}
