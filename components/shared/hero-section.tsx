@@ -251,7 +251,7 @@ export function HeroSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -32 }}
                 transition={{ type: "spring", stiffness: 320, damping: 28 }}
-                className="absolute bottom-28 left-3 z-20 max-w-[11.5rem] rounded-lg bg-white p-2 shadow-md sm:bottom-20 md:bottom-24 md:left-8 md:max-w-[18rem] md:rounded-xl md:p-4"
+                className="absolute bottom-28 left-0 z-20 max-w-[11.5rem] rounded-r-lg bg-white p-2 shadow-md sm:bottom-20 md:bottom-24  md:max-w-[28rem] md:rounded-r-xl md:py-4 md:px-8"
                 role="status"
               >
                 <button
@@ -262,7 +262,7 @@ export function HeroSection({
                 >
                   <X className="size-3 md:size-4" />
                 </button>
-                <p className="pr-4 text-[8px] leading-snug text-zinc-900 md:pr-5 md:text-sm">
+                <p className="pr-4 text-[8px] leading-snug text-zinc-900 md:pr-16 md:text-xs">
                   <span className="font-semibold">{disclaimer.title}<br /></span>{" "}
                   {disclaimer.body}
                 </p>

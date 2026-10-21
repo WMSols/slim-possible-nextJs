@@ -13,15 +13,15 @@ const CONTENT = {
     },
     {
       label: "See your body respond",
-      image: "/images/cgm-3.png",
+      image: "/images/scale-2.png",
     },
     {
       label: "See what's happening",
-      image: "/images/cgm-2.png",
+      image: "/images/scale-3.png",
     },
     {
       label: "Turn data into understanding",
-      image: "/images/cgm-app.png",
+      image: "/images/scale-4.png",
     },
   ],
   cta: {
@@ -39,20 +39,20 @@ export function BeyondScaleSection() {
   return (
     <section className="bg-white px-4 py-14 md:py-20">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl font-bold leading-tight tracking-tight text-[#14919B] md:text-4xl lg:text-[2.75rem]">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-2xl sm:max-w-xl  font-bold leading-tight tracking-tight text-[#01AFA9] md:text-4xl lg:text-[2.75rem]">
             {CONTENT.title}
           </h2>
-          <p className="mt-4 text-sm leading-relaxed text-zinc-900 md:text-base lg:text-lg">
-            {CONTENT.description}
+          <p className="mt-4 sm:mt-8 text-sm leading-relaxed text-zinc-900 md:text-base lg:text-lg">
+          Glucose changes throughout the day in response to food, activity,<br className="hidden md:block"/> sleep and other factors. Continuous glucose monitoring can<br className="hidden md:block"/> provide a more detailed picture of glucose patterns over time.
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-10 lg:grid-cols-4 lg:gap-6">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-10 lg:grid-cols-4 lg:gap-4">
           {CONTENT.cards.map((card) => (
             <article
               key={card.label}
-              className="relative isolate min-h-[20rem] overflow-hidden rounded-[28px] sm:min-h-[22rem] lg:min-h-[26rem] lg:rounded-[32px]"
+              className="relative isolate min-h-[20rem] overflow-hidden rounded-[28px] sm:min-h-[22rem] lg:min-h-[24rem] lg:rounded-[32px]"
             >
               <Image
                 src={card.image}
@@ -71,7 +71,7 @@ export function BeyondScaleSection() {
           ))}
         </div>
 
-        <div className="mt-8 flex flex-col items-center gap-6 rounded-[28px] bg-brand-mint px-5 py-6 md:mt-10 md:gap-8 md:rounded-[35px] md:px-8 md:py-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:px-10 lg:py-9">
+        <div className="mt-8 flex flex-col  gap-6 rounded-[28px] bg-brand-mint px-3 py-2 md:mt-10 md:gap-2 md:rounded-[35px] md:px-8 md:py-5 lg:flex-row lg:items-center lg:justify-between   ">
           <div className="relative h-44 w-full max-w-[280px] shrink-0 overflow-hidden rounded-2xl bg-white sm:h-52 sm:max-w-[320px] lg:h-56 lg:w-[340px] lg:max-w-none">
             <Image
               src={CONTENT.cta.visual}
@@ -82,12 +82,12 @@ export function BeyondScaleSection() {
             />
           </div>
 
-          <div className="min-w-0 flex-1 text-center lg:text-left">
-            <h3 className="text-lg font-bold leading-snug text-zinc-900 md:text-xl lg:text-2xl">
-              {CONTENT.cta.title}
+          <div className="min-w-0 flex-1  lg:text-left">
+            <h3 className="text-lg font-normal leading-snug text-zinc-900 md:text-xl lg:text-4xl">
+            Get a CGM Today. <br /> Know your glucose,<br /> Improve your health
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-zinc-800 md:text-base">
-              {CONTENT.cta.description}
+            Turn continuous glucose data<br/> into meaningful insights that<br/> support healthier habits and<br/> better everyday decisions
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function BeyondScaleSection() {
             href={buyHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center rounded-xl border border-zinc-900 bg-brand-mint px-8 py-3 text-sm font-semibold tracking-wide text-zinc-900 transition hover:bg-white/70 md:px-10 md:py-3.5 md:text-base"
+            className="inline-flex shrink-0 w-fit items-center justify-center rounded-2xl border-2 border-zinc-900  px-8 py-3 text-sm font-semibold tracking-wide text-zinc-900 transition hover:bg-black hover:text-white md:px-8 md:py-5 md:text-base"
           >
             {CONTENT.cta.buttonText}
           </Link>

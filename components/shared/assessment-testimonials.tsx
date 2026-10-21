@@ -39,7 +39,7 @@ function Stars({ count }: { count: number }) {
 
 export function AssessmentTestimonials() {
   return (
-    <section className="bg-[#F7F8FA] px-4 py-14 md:py-20">
+    <section className="bg-[#F7F8FA] px-4 py-14 md:py-16">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
         <div className="flex flex-col items-center">
           <Image
@@ -50,11 +50,11 @@ export function AssessmentTestimonials() {
             className="h-auto w-[min(100%,22rem)] object-contain md:w-[min(100%,28rem)]"
           />
 
-          <div className="mt-10 grid w-full grid-cols-1 gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
+          <div className="mt-10 grid w-full grid-cols-1 items-stretch gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
             {STEPS.map((step) => (
               <article
                 key={step.title}
-                className="rounded-[28px] bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.08)] md:rounded-[32px] md:p-7 lg:p-8"
+                className="h-full min-h-[19rem] rounded-[28px] bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.08)] md:min-h-[22rem] md:rounded-[32px] md:p-8 md:pt-16 "
               >
                 <h3 className="text-lg font-bold leading-snug text-brand-blue md:text-xl">
                   {step.title}
@@ -79,11 +79,11 @@ export function AssessmentTestimonials() {
             What patients are saying
           </h2>
 
-          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-2">
             {testimonials.map((item) => (
               <article
                 key={`${item.name}-${item.location}`}
-                className="flex h-full flex-col rounded-[28px] bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.08)] md:rounded-[32px] md:p-7"
+                className="flex h-full flex-col rounded-[28px] bg-white p-4 shadow-[0_8px_30px_rgba(15,23,42,0.08)] md:rounded-[42px] md:p-5"
               >
                 <div className="flex items-center justify-between gap-3">
                   <Stars count={item.rating} />
@@ -92,11 +92,11 @@ export function AssessmentTestimonials() {
                   </span>
                 </div>
 
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-zinc-800 md:text-[15px]">
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-zinc-800 ">
                   &ldquo;{item.quote}&rdquo;
                 </p>
 
-                <p className="mt-5 text-xs text-zinc-400 md:text-sm">
+                <p className="mt-2 text-xs text-zinc-400 md:text-sm">
                   {item.name} - {item.age} - {item.location}
                 </p>
               </article>

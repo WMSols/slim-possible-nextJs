@@ -73,22 +73,22 @@ export function NotAloneBanner({ variant = "default" }: NotAloneBannerProps) {
         {isSecondary ? (
           <div className="relative z-10 flex h-full min-h-[26rem] flex-col items-center justify-center px-6 py-12 text-center md:min-h-[36rem] md:px-12 md:py-16 lg:min-h-[780px] lg:px-16 lg:py-20">
             <div className="flex max-w-2xl flex-col items-center gap-4 md:max-w-3xl md:gap-5 lg:max-w-4xl">
-              <p className="text-sm text-white md:text-base lg:text-lg">
+              <p className="text-sm text-white font-light md:text-base lg:text-2xl">
                 {SECONDARY_CONTENT.eyebrow}
               </p>
-              <h2 className="text-2xl font-bold leading-tight tracking-tight text-brand-orange md:text-4xl lg:text-5xl">
+              <h2 className="text-2xl mt-2 sm:mt-8 font-bold leading-tight tracking-tight text-brand-orange md:text-4xl lg:text-6xl">
                 {SECONDARY_CONTENT.title}
               </h2>
-              <p className="max-w-xl text-sm leading-relaxed text-white md:max-w-2xl md:text-base lg:text-lg">
+              <p className="max-w-xl text-sm leading-relaxed font-extralight text-white md:max-w-2xl md:text-base lg:text-lg">
                 {SECONDARY_CONTENT.description}
               </p>
-              <div className="flex flex-col items-center gap-3 pt-2">
+              <div className="flex flex-col items-center gap-3 pt-2 sm:pt-16">
                 <UniversalButton
                   variant="orange"
                   ctaText={SECONDARY_CONTENT.orangeCta.text}
                   ctaLink={SECONDARY_CONTENT.orangeCta.link}
                 />
-                <p className="text-xs text-white/90 md:text-sm">
+                <p className="text-xs text-white/90 mt-4  font-light">
                   {SECONDARY_CONTENT.footnote}
                 </p>
               </div>
@@ -96,15 +96,17 @@ export function NotAloneBanner({ variant = "default" }: NotAloneBannerProps) {
           </div>
         ) : (
           <div className="relative z-10 flex h-full min-h-[26rem] flex-col justify-center px-6 py-12 md:min-h-[36rem] md:justify-start md:px-14 md:pt-24 md:pb-16 lg:min-h-[780px] lg:px-20 lg:pt-32 lg:pb-20 xl:px-28">
-            <div className="flex w-full max-w-[36.25rem] flex-col items-start gap-3 md:gap-4">
-              <h2 className="text-2xl font-bold leading-[1.15] tracking-tight text-brand-green md:text-4xl lg:text-5xl">
-                {titleLead}
-                <br className="hidden md:block" /> {titleTail}
-              </h2>
-              <p className="text-sm leading-relaxed text-white md:text-lg lg:text-xl lg:leading-relaxed">
-                {DEFAULT_CONTENT.description}
-              </p>
-              <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
+            <div className="flex w-full max-w-[36.25rem] flex-col items-start">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <h2 className="text-2xl font-bold leading-[1.15] tracking-tight text-brand-green md:text-4xl lg:text-5xl">
+                  {titleLead}
+                  <br className="hidden md:block" /> {titleTail}
+                </h2>
+                <p className="text-sm leading-relaxed text-white md:text-lg lg:text-xl lg:leading-relaxed">
+                  {DEFAULT_CONTENT.description}
+                </p>
+              </div>
+              <div className="mt-10 flex flex-col items-start gap-2 sm:mt-12 sm:flex-row sm:items-center md:mt-16 lg:mt-20">
                 <UniversalButton
                   variant="orange"
                   ctaText={DEFAULT_CONTENT.orangeCta.text}

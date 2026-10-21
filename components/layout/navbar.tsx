@@ -9,7 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
-  Search,
   X,
 } from "lucide-react";
 import {
@@ -28,21 +27,24 @@ export function Navbar() {
     string | null
   >(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
-  const [desktopSearchOpen, setDesktopSearchOpen] = useState(false);
-  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const desktopSearchRef = useRef<HTMLInputElement>(null);
   const closeMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
   const ignoreHamburgerHoverRef = useRef(false);
 
   useEffect(() => {
-    if (desktopSearchOpen) desktopSearchRef.current?.focus();
-  }, [desktopSearchOpen]);
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -79,16 +81,6 @@ export function Navbar() {
   };
 
   useEffect(() => () => clearCloseMenuTimeout(), []);
-
-  const handleSearchSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    setSearchQuery("");
-    setDesktopSearchOpen(false);
-    setMobileSearchOpen(false);
-    setMobileOpen(false);
-    setMobileDropdown(null);
-    setDesktopMenuOpen(false);
-  };
 
   const hasDropdown = (item: NavItem) =>
     Boolean((item.children && item.children.length > 0) || item.megaImage);
@@ -222,61 +214,23 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "pointer-events-none fixed left-0 right-0 z-50 mx-auto w-[90%]",
-        isHomePage ? "top-14 md:top-[5.5rem]" : "top-4 md:top-6",
+        "pointer-events-none fixed left-0 right-0 z-50 mx-auto w-[90%] transition-[top] duration-300 ease-out",
+        isHomePage && !isScrolled
+          ? "top-14 md:top-[5.5rem]"
+          : "top-4 md:top-6",
       )}
     >
       {/* Desktop */}
       <div
         className={cn(
-          "pointer-events-auto relative hidden flex-col shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors xl:flex",
+          "pointer-events-auto relative hidden flex-col shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-colors lg:flex",
           NAV_BG,
           activePrimaryDropdown ? "rounded-t-[25px]" : "rounded-[25px]",
         )}
         onMouseLeave={scheduleCloseDesktopMenu}
         onMouseEnter={clearCloseMenuTimeout}
       >
-        {desktopSearchOpen ? (
-          <div className="flex w-full items-center justify-between gap-6 px-8 py-4">
-            <div className="flex shrink-0 items-center gap-4">
-              <Search className="h-5 w-5 text-white" />
-              <span className="hidden text-sm font-medium text-white lg:block">
-                Search SlimPossible
-              </span>
-            </div>
-
-            <form
-              onSubmit={handleSearchSubmit}
-              className="flex flex-1 items-center gap-4"
-            >
-              <div className="flex flex-1 items-center rounded-full bg-[#222222] px-5 py-3">
-                <input
-                  ref={desktopSearchRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search slimpossible.com"
-                  className="w-full bg-transparent text-sm text-white outline-none placeholder:text-[#999999]"
-                />
-              </div>
-              <button
-                type="submit"
-                className="shrink-0 rounded-[15px] bg-white p-3.5 text-black transition-colors hover:bg-gray-200"
-              >
-                <Search className="h-6 w-6" />
-              </button>
-            </form>
-
-            <button
-              className="ml-2 shrink-0 text-white hover:text-gray-300"
-              onClick={() => setDesktopSearchOpen(false)}
-              aria-label="Close search"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-        ) : (
-          <div className="flex w-full flex-col">
+        <div className="flex w-full flex-col">
             <div className="flex w-full items-center justify-between px-8 py-4">
               <Link
                 href="/"
@@ -287,16 +241,6 @@ export function Navbar() {
               </Link>
 
               <div className="flex shrink-0 items-center gap-6">
-                <button
-                  className="text-white hover:text-gray-300"
-                  onClick={() => {
-                    setDesktopSearchOpen(true);
-                    closeDesktopMenu();
-                  }}
-                  aria-label="Open search"
-                >
-                  <Search className="h-5 w-5" />
-                </button>
                 <button
                   className="text-white hover:text-gray-300"
                   onMouseEnter={openDesktopMenu}
@@ -370,79 +314,32 @@ export function Navbar() {
               </div>
             ) : null}
           </div>
-        )}
       </div>
 
       {/* Mobile collapsed bar */}
       <div
         className={cn(
-          "pointer-events-auto flex items-center justify-between rounded-[25px] px-3 py-1.5 shadow-[0_2px_12px_rgba(0,0,0,0.08)] xl:hidden",
+          "pointer-events-auto flex items-center justify-between rounded-2xl px-4 py-2.5 shadow-[0_2px_12px_rgba(0,0,0,0.08)] lg:hidden",
           NAV_BG,
         )}
       >
-        {mobileSearchOpen ? (
-          <form
-            onSubmit={handleSearchSubmit}
-            className="flex w-full items-center gap-2"
-          >
-            <div className="flex min-w-0 flex-1 items-center rounded-full bg-[#222222] px-3 py-1.5">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search"
-                className="w-full bg-transparent text-sm text-white outline-none placeholder:text-[#999999]"
-              />
-            </div>
-            <button
-              type="submit"
-              className="shrink-0 rounded-[10px] bg-white p-2 text-black"
-              aria-label="Submit search"
-            >
-              <Search className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              className="shrink-0 p-1 text-white"
-              onClick={() => setMobileSearchOpen(false)}
-              aria-label="Close search"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </form>
-        ) : (
-          <>
-            <Link href="/" className="flex min-w-0 shrink-0 items-center">
-              {renderLogo("mobile")}
-            </Link>
-            <div className="flex shrink-0 items-center gap-0.5">
-              <button
-                className="p-1.5 text-white"
-                onClick={() => setMobileSearchOpen(true)}
-                aria-label="Open search"
-              >
-                <Search className="h-4 w-4" />
-              </button>
-              <button
-                className="p-1.5 text-white"
-                onClick={() => {
-                  setMobileSearchOpen(false);
-                  setMobileOpen(true);
-                }}
-                aria-label="Open menu"
-              >
-                <Menu className="h-6 w-6" strokeWidth={2} />
-              </button>
-            </div>
-          </>
-        )}
+        <Link href="/" className="flex min-w-0 shrink-0 items-center">
+          {renderLogo("mobile")}
+        </Link>
+        <button
+          className="p-1.5 text-white"
+          onClick={() => setMobileOpen(true)}
+          aria-label="Open menu"
+        >
+          <Menu className="h-6 w-6" strokeWidth={2} />
+        </button>
       </div>
 
       {/* Mobile full-screen menu */}
       {mobileOpen ? (
         <div
           className={cn(
-            "pointer-events-auto fixed inset-0 z-[100] flex flex-col xl:hidden",
+            "pointer-events-auto fixed inset-0 z-[100] flex flex-col lg:hidden",
             NAV_BG,
           )}
         >
@@ -470,29 +367,6 @@ export function Navbar() {
           </div>
 
           <div className="flex-1 overflow-y-auto px-6 py-4">
-            <form
-              onSubmit={handleSearchSubmit}
-              className="mb-8 flex items-center gap-2"
-            >
-              <div className="flex min-w-0 flex-1 items-center rounded-full bg-[#222222] px-4 py-3">
-                <Search className="mr-3 h-4 w-4 shrink-0 text-white/50" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search"
-                  className="w-full bg-transparent text-base text-white outline-none placeholder:text-[#999999]"
-                />
-              </div>
-              <button
-                type="submit"
-                className="shrink-0 rounded-[12px] bg-white p-3 text-black"
-                aria-label="Submit search"
-              >
-                <Search className="h-5 w-5" />
-              </button>
-            </form>
-
             {!mobileDropdown ? (
               <div className="flex flex-col gap-10">
                 <div className="flex flex-col gap-6">

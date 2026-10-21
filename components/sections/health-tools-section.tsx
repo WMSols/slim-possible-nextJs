@@ -299,8 +299,8 @@ export function HealthToolsSection({
                 <span className="block">{healthTools.titleLineOne}</span>
                 <span className="block">{healthTools.titleLineTwo}</span>
               </h2>
-              <p className="mt-8  text-sm font-semibold text-[#60269E] md:text-base lg:text-2xl">
-                {healthTools.caption}
+              <p className=" mt-2 sm:mt-8  text-sm font-semibold text-[#60269E] md:text-base lg:text-2xl">
+              Check your BMI and waist measurement for a quick<br className="hidden md:block"/> indication of weight-related health risk.
               </p>
             </div>
 
@@ -325,45 +325,49 @@ export function HealthToolsSection({
 
               <div className="relative z-10 grid h-full min-h-[26rem] grid-cols-1 md:min-h-full md:grid-cols-2">
                 <div
-                  className="mx-6 h-px bg-white/70 md:absolute md:inset-y-[18%] md:left-1/2 md:mx-0 md:h-auto md:w-px md:-translate-x-1/2"
+                  className="mx-6 h-px bg-white/70 md:absolute md:inset-y-[12%] md:left-1/2 md:mx-0 md:h-auto md:w-px md:-translate-x-1/2"
                   aria-hidden
                 />
 
-                <div className="flex flex-col items-center justify-center px-6 py-10 text-center md:px-8 lg:px-12">
-                  <div className="flex max-w-sm flex-col items-center gap-3">
-                    <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
-                      {healthTools.bmi.heading}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-white/95 md:text-base">
-                      {healthTools.bmi.description}
-                    </p>
-                    <div className="pt-2">
-                      <UniversalButton
-                        variant="purple"
-                        ctaText={healthTools.bmi.ctaText}
-                        onClick={() => setOpenCalculator("bmi")}
-                        ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
-                      />
+                <div className="flex h-full flex-col items-center px-6 py-10 text-center md:px-8 md:py-14 lg:px-12 lg:py-16">
+                  <div className="flex w-full flex-1 flex-col items-center justify-center">
+                    <div className="flex max-w-sm flex-col items-center gap-3">
+                      <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
+                        {healthTools.bmi.heading}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-white/95 md:text-base">
+                        {healthTools.bmi.description}
+                      </p>
                     </div>
+                  </div>
+                  <div className="flex w-full flex-1 flex-col items-center justify-center pt-6 md:justify-end md:pt-0">
+                    <UniversalButton
+                      variant="purple"
+                      ctaText={healthTools.bmi.ctaText}
+                      onClick={() => setOpenCalculator("bmi")}
+                      ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
+                    />
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center px-6 py-10 text-center md:px-8 lg:px-12">
-                  <div className="flex max-w-sm flex-col items-center gap-3">
-                    <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
-                      {healthTools.waistRisk.heading}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-white/95 md:text-base">
-                      {healthTools.waistRisk.description}
-                    </p>
-                    <div className="pt-2">
-                      <UniversalButton
-                        variant="purple"
-                        ctaText={healthTools.waistRisk.ctaText}
-                        onClick={() => setOpenCalculator("waist")}
-                        ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
-                      />
+                <div className="flex h-full flex-col items-center px-6 py-10 text-center md:px-8 md:py-14 lg:px-12 lg:py-16">
+                  <div className="flex w-full flex-1 flex-col items-center justify-center">
+                    <div className="flex max-w-sm flex-col items-center gap-3">
+                      <h3 className="text-xl font-bold text-white md:text-2xl lg:text-3xl">
+                        {healthTools.waistRisk.heading}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-white/95 md:text-base">
+                        {healthTools.waistRisk.description}
+                      </p>
                     </div>
+                  </div>
+                  <div className="flex w-full flex-1 flex-col items-center justify-center pt-6 md:justify-end md:pt-0">
+                    <UniversalButton
+                      variant="purple"
+                      ctaText={healthTools.waistRisk.ctaText}
+                      onClick={() => setOpenCalculator("waist")}
+                      ctaClassName="!bg-[#5b2a7a] hover:!bg-[#4a2265]"
+                    />
                   </div>
                 </div>
               </div>
