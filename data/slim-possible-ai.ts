@@ -15,11 +15,11 @@ export type AiSidebarItem = {
 export const slimPossibleAiData = {
   title: "SlimPossible AI",
   description:
-    "Ask questions about obesity, weight management, metabolic health, and your next steps — anytime",
+    "Ask questions about obesity, weight management, metabolic health, and your next steps, anytime",
   landing: {
     title: "SlimPossible AI",
     subtitle:
-      "Ask questions about obesity, weight management, metabolic health, and your next steps — anytime",
+      "Ask questions about obesity, weight management, metabolic health, and your next steps, anytime",
     ctaText: "Ask a Question",
     ctaHref: "/slim-possible-ai/chat",
     collage: [

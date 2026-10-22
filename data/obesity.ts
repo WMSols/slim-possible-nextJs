@@ -1,10 +1,10 @@
 export const obesityData = {
   title: "Obesity",
-  description: "Understanding Obesity page — content coming soon.",
+  description: "Understanding Obesity page - content coming soon.",
   hero: {
     title: "Obesity Is More Than Weight",
     subtitle:
-      "It’s a complex medical condition influenced by many factors — and it can affect much more than the number on the scale. Understanding why obesity happens is the first step toward managing it",
+      "It’s a complex medical condition influenced by many factors, and it can affect much more than the number on the scale. Understanding why obesity happens is the first step toward managing it",
     backgroundImage: "/images/kids-shop.png",
     exploreText: "Understand Obesity",
   },
@@ -12,7 +12,7 @@ export const obesityData = {
     {
       title: "Your Weight Has a Story",
       description:
-        "Obesity isn't caused by one thing. Your biology, environment, habits, health and life experiences can all influence weight — and understanding those factors can help you find a better way forward.",
+        "Obesity isn't caused by one thing. Your biology, environment, habits, health and life experiences can all influence weight, and understanding those factors can help you find a better way forward.",
       backgroundImage: "/images/man-flowers.png",
       showBlueCta: true,
       hideAllCta: false,

@@ -1,6 +1,6 @@
 export const communityAndMediaData = {
   title: "Community and Media",
-  description: "Community and Media page — content coming soon.",
+  description: "Community and Media page - content coming soon.",
   hero: {
     title: "Community & Media",
     backgroundImage: "/images/hand-pen.png",

@@ -39,7 +39,7 @@ function Stars({ count }: { count: number }) {
 
 export function AssessmentTestimonials() {
   return (
-    <section className="bg-[#F7F8FA] px-4 py-14 md:py-16">
+    <section className="bg-white px-4 py-14 md:py-16">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
         <div className="flex flex-col items-center">
           <Image
@@ -54,7 +54,7 @@ export function AssessmentTestimonials() {
             {STEPS.map((step) => (
               <article
                 key={step.title}
-                className="h-full min-h-[19rem] rounded-[28px] bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.08)] md:min-h-[22rem] md:rounded-[32px] md:p-8 md:pt-16 "
+                className="h-full sm:min-h-[19rem] rounded-[28px] bg-white p-6 shadow-[0_8px_30px_rgba(15,23,42,0.08)] md:min-h-[22rem] md:rounded-[32px] md:p-8 md:pt-16 "
               >
                 <h3 className="text-lg font-bold leading-snug text-brand-blue md:text-xl">
                   {step.title}
@@ -73,7 +73,7 @@ export function AssessmentTestimonials() {
             Start Your Assessment
           </a>
         </div>
-
+{/* Testimonials */}
         <div className="mt-16 md:mt-20">
           <h2 className="text-sm font-medium uppercase tracking-[0.12em] text-[#6B8A9A] md:text-base">
             What patients are saying

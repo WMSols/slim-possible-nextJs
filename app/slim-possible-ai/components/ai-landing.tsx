@@ -1,11 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { AiChatWidget } from "@/components/shared/ai-chat-widget";
 import { slimPossibleAiData } from "@/data/slim-possible-ai";
 
 export function AiLanding() {
-  const { title, subtitle, ctaText, ctaHref, collage } =
-    slimPossibleAiData.landing;
+  const { title, subtitle, collage } = slimPossibleAiData.landing;
   const [
     topLeft,
     topMid,
@@ -67,15 +65,7 @@ export function AiLanding() {
         </div>
       </div>
 
-      <Link
-        href={ctaHref}
-        className="group absolute bottom-6 right-5 z-20 inline-flex items-center gap-3 text-base font-medium text-[#5b2a7a] transition hover:brightness-110 md:bottom-10 md:right-10 md:text-lg"
-      >
-        {ctaText}
-        <span className="flex size-11 items-center justify-center rounded-full border-2 border-brand-green text-brand-green transition group-hover:bg-brand-green/10 md:size-12">
-          <ArrowRight className="size-5 md:size-6" strokeWidth={2.25} />
-        </span>
-      </Link>
+      <AiChatWidget />
     </section>
   );
 }

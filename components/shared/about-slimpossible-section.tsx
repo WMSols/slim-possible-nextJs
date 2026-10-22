@@ -20,17 +20,17 @@ export function AboutSlimPossibleSection({
   backgroundImage,
 }: AboutSlimPossibleSectionProps) {
   return (
-    <section className="bg-white px-4 pt-12 md:pt-16">
+    <section className="bg-white px-4 pt-12 md:pt-32">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
         <h2 className="text-3xl font-bold leading-tight tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem]">
           {titleLead} <span className="text-brand-green">{titleSlim}</span>
           <span className="text-brand-purple">{titlePossible}</span>
         </h2>
-        <p className="mt-4 max-w-4xl text-sm leading-relaxed text-zinc-900 md:mt-5 md:text-base lg:text-lg">
+        <p className="mt-4 max-w-5xl text-sm  text-zinc-900 md:mt-8 md:text-base lg:text-2xl">
           {description}
         </p>
 
-        <div className="relative isolate mt-8 overflow-hidden rounded-[25px] md:mt-10 md:rounded-[35px]">
+        <div className="relative isolate mt-8 min-h-[28rem] overflow-hidden rounded-[25px] md:mt-16 md:min-h-[34rem] md:rounded-[35px] lg:min-h-[38rem]">
           <Image
             src={backgroundImage}
             alt=""
@@ -44,7 +44,7 @@ export function AboutSlimPossibleSection({
             <h3 className="text-2xl font-bold leading-tight tracking-tight text-brand-orange md:text-4xl lg:text-[2.75rem]">
               {cardTitle}
             </h3>
-            <div className="mt-4 space-y-4 text-sm leading-relaxed text-white md:mt-5 md:space-y-5 md:text-base lg:text-lg">
+            <div className="mt-4 space-y-4 text-sm  text-white md:mt-20 md:space-y-8 md:text-base lg:text-2xl">
               {cardParagraphs.map((paragraph) => (
                 <p key={paragraph.slice(0, 32)}>{paragraph}</p>
               ))}

@@ -32,7 +32,7 @@ export const mainNavItems: NavItem[] = [
     label: "Understanding Obesity",
     href: "/obesity",
     description:
-      "Obesity is more than weight — understand the factors that influence it and what you can do next",
+      "Obesity is more than weight - understand the factors that influence it and what you can do next",
     megaImage: "/images/obesity/mw-food.png",
     megaImageSubtitle: "Understand obesity",
     megaImageLink: "/obesity",
@@ -106,7 +106,6 @@ export const footerLinkGroups = [
       { label: "Obesity", href: "/obesity" },
       { label: "Support", href: "/support" },
       { label: "SlimPossible AI", href: "/slim-possible-ai" },
-      { label: "Legacy AI", href: "/legacy-ai" },
     ],
   },
   {

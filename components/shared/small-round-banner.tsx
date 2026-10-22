@@ -17,8 +17,17 @@ export type SmallRoundBannerProps = {
   variant?: "default" | "tall";
   /** Shows the hardcoded blue CTA. Default true. */
   showBlueCta?: boolean;
+  /** Shows the gradient AI CTA. Default false. */
+  showGradientCta?: boolean;
   /** Hides both CTAs. Default false. */
   hideAllCta?: boolean;
+  /** Aligns the eyebrow, title, description, and CTAs. Default center. */
+  contentAlign?: "center" | "left";
+  /**
+   * Padding on the inner content (title, description, CTAs).
+   * When set, replaces the default padding entirely.
+   */
+  contentPaddingClassName?: string;
   className?: string;
 };
 
@@ -32,6 +41,11 @@ const BLUE_CTA = {
   link: "#",
 } as const;
 
+const GRADIENT_CTA = {
+  text: "Ask SlimPossible's AI",
+  link: "/slim-possible-ai",
+} as const;
+
 export function SmallRoundBanner({
   title,
   description,
@@ -41,10 +55,17 @@ export function SmallRoundBanner({
   descriptionClassName = "",
   variant = "default",
   showBlueCta = true,
+  showGradientCta = false,
   hideAllCta = false,
+  contentAlign = "center",
+  contentPaddingClassName = "",
   className = "",
 }: SmallRoundBannerProps) {
   const isTall = variant === "tall";
+  const isLeft = contentAlign === "left";
+  const defaultContentPadding = isTall
+    ? "px-6 py-14 md:px-12 md:py-20 lg:px-16 lg:py-24"
+    : "px-6 py-14 md:px-12 md:py-20 lg:px-16";
 
   return (
     <section
@@ -73,12 +94,18 @@ export function SmallRoundBanner({
 
         <div
           className={cn(
-            "absolute inset-0 z-10 flex flex-col items-center px-6 text-center md:px-12 lg:px-16",
-            isTall ? "py-14 md:py-20 lg:py-24" : "py-14 md:py-20",
+            "absolute inset-0 z-10 flex flex-col",
+            contentPaddingClassName || defaultContentPadding,
+            isLeft ? "items-start text-left" : "items-center text-center",
             hideAllCta ? "justify-center" : "justify-between",
           )}
         >
-          <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4 md:gap-5 2xl:max-w-4xl">
+          <div
+            className={cn(
+              "flex w-full max-w-3xl flex-col gap-4 md:gap-5 2xl:max-w-4xl",
+              isLeft ? "mr-auto items-start" : "mx-auto items-center",
+            )}
+          >
             {eyebrow ? (
               <p className="text-sm text-white md:text-base lg:text-lg">
                 {eyebrow}
@@ -86,19 +113,19 @@ export function SmallRoundBanner({
             ) : null}
 
             <h2
-              className={cn(
-                "text-2xl font-bold leading-tight tracking-tight md:text-4xl lg:text-[2.75rem]",
-                titleClassName || "text-brand-orange",
-              )}
+              className={
+                titleClassName ||
+                "text-2xl font-bold leading-tight tracking-tight text-brand-orange md:text-4xl lg:text-[2.75rem]"
+              }
             >
               {title}
             </h2>
 
             <div
-              className={cn(
-                "max-w-2xl space-y-4 text-sm leading-relaxed text-white md:text-base lg:text-lg 2xl:max-w-3xl",
-                descriptionClassName,
-              )}
+              className={
+                descriptionClassName ||
+                "max-w-2xl space-y-4 text-sm leading-relaxed text-white md:text-base lg:text-lg 2xl:max-w-3xl"
+              }
             >
               {typeof description === "string" ? (
                 <p>{description}</p>
@@ -109,7 +136,12 @@ export function SmallRoundBanner({
           </div>
 
           {!hideAllCta ? (
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+            <div
+              className={cn(
+                "flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4",
+                isLeft ? "items-start justify-start" : "items-center justify-center",
+              )}
+            >
               <UniversalButton
                 variant="orange"
                 ctaText={ORANGE_CTA.text}
@@ -120,6 +152,13 @@ export function SmallRoundBanner({
                   variant="blue"
                   ctaText={BLUE_CTA.text}
                   ctaLink={BLUE_CTA.link}
+                />
+              ) : null}
+              {showGradientCta ? (
+                <UniversalButton
+                  variant="gradient"
+                  ctaText={GRADIENT_CTA.text}
+                  ctaLink={GRADIENT_CTA.link}
                 />
               ) : null}
             </div>

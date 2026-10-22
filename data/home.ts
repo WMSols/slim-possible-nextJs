@@ -4,7 +4,7 @@ export type RiskPill =
 
 export const homeData = {
   title: "Home",
-  description: "SlimPossible home page — content coming soon.",
+  description: "SlimPossible home page - content coming soon.",
   healthRisks: {
     title: "Health Risks Associated with Obesity",
     rowOne: [
@@ -90,7 +90,7 @@ export const homeData = {
     ],
     aiReplies: {
       "What does my BMI mean?":
-        "BMI (Body Mass Index) is a screening tool that uses height and weight to estimate body fat. It is not a diagnosis — talk to a clinician about what your number means for you.",
+        "BMI (Body Mass Index) is a screening tool that uses height and weight to estimate body fat. It is not a diagnosis - talk to a clinician about what your number means for you.",
       "What kind of doctor should I see for obesity?":
         "Start with a GP or endocrinologist experienced in obesity care. They can assess risks and refer you to nutrition, coaching, or specialist support as needed.",
       "How do I know if my weight is becoming a medical problem?":
@@ -100,9 +100,9 @@ export const homeData = {
       "What does a glucose spike mean?":
         "A spike is a rapid rise in glucose after meals or stress. Occasional rises are normal; frequent large spikes are worth discussing with a clinician.",
       "What should I look for in my glucose trends?":
-        "Look for patterns across days — overnight levels, post-meal peaks, and time in range — rather than any single reading in isolation.",
+        "Look for patterns across days, overnight levels, post-meal peaks, and time in range, rather than any single reading in isolation.",
     } as Record<string, string>,
     aiFallbackReply:
-      "Thanks for your question. SlimPossible can help explain common metabolic-health concepts — this is general information, not a diagnosis. For personal advice, talk to a healthcare professional.",
+      "Thanks for your question. SlimPossible can help explain common metabolic-health concepts - this is general information, not a diagnosis. For personal advice, talk to a healthcare professional.",
   },
 };

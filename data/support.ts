@@ -1,6 +1,6 @@
 export const supportData = {
   title: "Support",
-  description: "Support page — content coming soon.",
+  description: "Support page - content coming soon.",
   hero: {
     title: "Get the Right Support for Your Weight",
     subtitle:

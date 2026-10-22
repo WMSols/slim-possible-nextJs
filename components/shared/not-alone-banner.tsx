@@ -96,17 +96,17 @@ export function NotAloneBanner({ variant = "default" }: NotAloneBannerProps) {
           </div>
         ) : (
           <div className="relative z-10 flex h-full min-h-[26rem] flex-col justify-center px-6 py-12 md:min-h-[36rem] md:justify-start md:px-14 md:pt-24 md:pb-16 lg:min-h-[780px] lg:px-20 lg:pt-32 lg:pb-20 xl:px-28">
-            <div className="flex w-full max-w-[36.25rem] flex-col items-start">
-              <div className="flex flex-col gap-3 md:gap-4">
-                <h2 className="text-2xl font-bold leading-[1.15] tracking-tight text-brand-green md:text-4xl lg:text-5xl">
+            <div className="flex w-full max-w-[36.25rem] 2xl:max-w-4xl flex-col items-start">
+              <div className="flex flex-col gap-3 md:gap-8">
+                <h2 className="text-2xl font-bold leading-[1.15] tracking-tight text-brand-green md:text-4xl lg:text-5xl 2xl:text-6xl">
                   {titleLead}
                   <br className="hidden md:block" /> {titleTail}
                 </h2>
-                <p className="text-sm leading-relaxed text-white md:text-lg lg:text-xl lg:leading-relaxed">
+                <p className="text-sm leading-[100%] text-white md:text-lg lg:text-xl ">
                   {DEFAULT_CONTENT.description}
                 </p>
               </div>
-              <div className="mt-10 flex flex-col items-start gap-2 sm:mt-12 sm:flex-row sm:items-center md:mt-16 lg:mt-20">
+              <div className="mt-10 flex flex-col items-start gap-2 sm:mt-12 sm:flex-row sm:items-center md:mt-16 lg:mt-40">
                 <UniversalButton
                   variant="orange"
                   ctaText={DEFAULT_CONTENT.orangeCta.text}

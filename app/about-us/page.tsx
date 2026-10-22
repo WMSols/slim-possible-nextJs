@@ -36,10 +36,14 @@ export default function AboutUsPage() {
       />
 
       <div className="pb-12 md:pb-16">
-        <SmallRoundBanner
+      <SmallRoundBanner
           title={nextStepBanner.title}
+          contentAlign="left"
           description={nextStepBanner.description}
           backgroundImage={nextStepBanner.backgroundImage}
+          titleClassName="text-brand-orange text-3xl font-semibold md:text-5xl"
+            contentPaddingClassName="px-4 py-16 md:px-12 lg:px-24 lg:py-36"
+            descriptionClassName="text-white mt-12 sm:mt-28 sm:text-2xl font-light leading-[1.1] max-w-3xl"
         />
       </div>
 

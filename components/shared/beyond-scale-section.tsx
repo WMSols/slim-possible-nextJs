@@ -39,7 +39,7 @@ export function BeyondScaleSection() {
   return (
     <section className="bg-white px-4 py-14 md:py-20">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-5xl 2xl:max-w-7xl">
           <h2 className="text-2xl sm:max-w-xl  font-bold leading-tight tracking-tight text-[#01AFA9] md:text-4xl lg:text-[2.75rem]">
             {CONTENT.title}
           </h2>
@@ -72,7 +72,7 @@ export function BeyondScaleSection() {
         </div>
 
         <div className="mt-8 flex flex-col  gap-6 rounded-[28px] bg-brand-mint px-3 py-2 md:mt-10 md:gap-2 md:rounded-[35px] md:px-8 md:py-5 lg:flex-row lg:items-center lg:justify-between   ">
-          <div className="relative h-44 w-full max-w-[280px] shrink-0 overflow-hidden rounded-2xl bg-white sm:h-52 sm:max-w-[320px] lg:h-56 lg:w-[340px] lg:max-w-none">
+          <div className="relative h-44 w-full max-w-[280px] shrink-0 overflow-hidden rounded-2xl bg-white sm:h-52 sm:max-w-[320px] lg:h-66 2xl:h-74 lg:w-[340px] lg:max-w-none">
             <Image
               src={CONTENT.cta.visual}
               alt="Sibionics CGM sensor and app"
@@ -83,10 +83,10 @@ export function BeyondScaleSection() {
           </div>
 
           <div className="min-w-0 flex-1  lg:text-left">
-            <h3 className="text-lg font-normal leading-snug text-zinc-900 md:text-xl lg:text-4xl">
+            <h3 className="text-lg font-normal  text-zinc-900 md:text-xl lg:text-4xl 2xl:text-5xl">
             Get a CGM Today. <br /> Know your glucose,<br /> Improve your health
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-800 md:text-base">
+            <p className="mt-2 text-sm leading-relaxed text-zinc-800 md:text-base 2xl:text-xl">
             Turn continuous glucose data<br/> into meaningful insights that<br/> support healthier habits and<br/> better everyday decisions
             </p>
           </div>

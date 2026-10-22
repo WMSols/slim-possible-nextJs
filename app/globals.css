@@ -10,7 +10,7 @@
   --brand-navy: #014E78;
   --brand-mint: #01AFA926;
   --brand-mint-dark: #2a8a7a;
-  --brand-green: #2db84c;
+  --brand-green: #35D32F;
   --brand-gradient-from: #8b6bb5;
   --brand-gradient-to: #f0b8a8;
 }
@@ -68,4 +68,23 @@ body {
   .animate-marquee-right {
     animation: none;
   }
+}
+
+.scrollbar-faint {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.28) transparent;
+}
+
+.scrollbar-faint::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.scrollbar-faint::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-faint::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.28);
+  border-radius: 999px;
 }

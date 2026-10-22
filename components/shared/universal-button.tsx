@@ -18,7 +18,7 @@ export type UniversalButtonProps = {
 
 const variantClasses: Record<UniversalButtonVariant, string> = {
   purple: "bg-brand-purple px-6 text-white",
-  orange: "relative mr-6 bg-brand-orange pr-10 pl-5 text-white",
+  orange: "relative mr-6 bg-brand-orange pr-10 pl-3 sm:pl-5 text-white",
   gradient:
     "bg-linear-to-r from-brand-gradient-from to-brand-gradient-to px-6 text-white",
   blue: "bg-brand-blue px-6 text-white",

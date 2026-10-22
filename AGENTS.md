@@ -1,3 +1,14 @@
+# Absolutly Do not do these
+- Do not run the Next Js application in terminal
+- Do not try to open a browser tab here or take control of the running browser
+- Do not take screenshots for verification 
+- Do not stage, commit or push files
+- Do not add the double dash while adding dummy texts
+
+
+
+
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know

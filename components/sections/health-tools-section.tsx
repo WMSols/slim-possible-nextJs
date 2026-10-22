@@ -73,7 +73,7 @@ function CalculatorModal({
       const meters = height / 100;
       const bmi = weight / (meters * meters);
       setResult(
-        `Your BMI is ${bmi.toFixed(1)} (${getBmiCategory(bmi)}). This is general information only — not a diagnosis.`,
+        `Your BMI is ${bmi.toFixed(1)} (${getBmiCategory(bmi)}). This is general information only, not a diagnosis.`,
       );
       return;
     }
@@ -84,7 +84,7 @@ function CalculatorModal({
       return;
     }
     setResult(
-      `Waist ${waist} cm suggests ${getWaistRisk(waist, sex)} for ${sex === "female" ? "women" : "men"} (WHO-style cutoffs). This is general information only — not a diagnosis.`,
+      `Waist ${waist} cm suggests ${getWaistRisk(waist, sex)} for ${sex === "female" ? "women" : "men"} (WHO-style cutoffs). This is general information only, not a diagnosis.`,
     );
   };
 
@@ -263,7 +263,7 @@ export function HealthToolsSection({
           <>
             <h2
               id="health-tools-heading"
-              className="mb-8 max-w-3xl text-2xl font-bold leading-tight tracking-tight text-[#5b2a7a] md:mb-10 md:text-3xl lg:max-w-4xl lg:text-4xl"
+              className="mb-8 mt-8 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-[#60269E] md:mb-10 md:text-3xl lg:max-w-4xl lg:text-5xl 2xl:text-6xl 2xl:max-w-6xl"
             >
               {healthTools.stackedTitle}
             </h2>

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { mediaCarouselSlides } from "@/data/media-carousel";
 import { cn } from "@/lib/utils";
@@ -15,25 +14,28 @@ export function MediaCarousel() {
   return (
     <div className="w-full">
       <div className="relative isolate aspect-[16/10] w-full overflow-hidden rounded-[28px] md:aspect-[16/9] md:rounded-[36px] lg:rounded-[40px]">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={slide.id}
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-          >
-            <Image
-              src={slide.image}
-              alt=""
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1536px) 100vw, 1280px"
-              priority={activeIndex === 0}
-            />
-          </motion.div>
-        </AnimatePresence>
+        <div
+          className="absolute inset-0 flex transition-transform duration-500 ease-out motion-reduce:transition-none"
+          style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        >
+          {mediaCarouselSlides.map((item, index) => (
+            <div
+              key={item.id}
+              className="relative h-full w-full shrink-0"
+              aria-hidden={index !== activeIndex}
+            >
+              <Image
+                src={item.image}
+                alt=""
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1536px) 100vw, 1280px"
+                priority={index === 0}
+                loading={index === 0 ? undefined : "eager"}
+              />
+            </div>
+          ))}
+        </div>
 
         <div className="absolute inset-x-0 bottom-0 z-10 bg-linear-to-t from-black/35 to-transparent px-5 pb-5 pt-16 md:px-8 md:pb-7">
           <Link

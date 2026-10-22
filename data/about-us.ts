@@ -1,6 +1,6 @@
 export const aboutUsData = {
   title: "About Us",
-  description: "About Us page — content coming soon.",
+  description: "About Us page - content coming soon.",
   hero: {
     title: "Making Obesity Care Easier to Understand and Access",
     subtitle:
@@ -13,7 +13,7 @@ export const aboutUsData = {
     titleSlim: "Slim",
     titlePossible: "Possible",
     description:
-      "Obesity is a complex medical condition, yet many people still struggle to find clear, credible information or know where to begin. SlimPossible was created to make that journey simpler — from understanding your health to finding the right support.",
+      "Obesity is a complex medical condition, yet many people still struggle to find clear, credible information or know where to begin. SlimPossible was created to make that journey simpler, from understanding your health to finding the right support.",
     whoWeAre: {
       title: "Who We Are",
       paragraphs: [
@@ -26,7 +26,7 @@ export const aboutUsData = {
   careConnection: {
     title: "Connecting You to the Right Care",
     description:
-      "Through our partnership with Marham— a digital healthcare platform that helps people across Pakistan connect with verified doctors for online and in-person consultations— SlimPossible helps connect people with qualified healthcare professionals for personalized obesity and weight-management support",
+      "Through our partnership with Marham, a digital healthcare platform that helps people across Pakistan connect with verified doctors for online and in-person consultations, SlimPossible helps connect people with qualified healthcare professionals for personalized obesity and weight-management support",
   },
   nextStepBanner: {
     title: "Ready to Take the Next Step?",

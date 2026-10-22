@@ -19,7 +19,7 @@ export default function SupportPage() {
         exploreText={hero.exploreText}
       />
 
-      <div className="flex flex-col gap-10 py-12 md:gap-14 md:py-16">
+      <div className="flex flex-col gap-10 py-12 md:gap-14 md:py-24">
         <SmallRoundBanner
           variant="default"
           hideAllCta
@@ -27,14 +27,18 @@ export default function SupportPage() {
           title={personalizedBanner.title}
           description={personalizedBanner.description}
           backgroundImage={personalizedBanner.backgroundImage}
-          titleClassName="text-white"
+          titleClassName="text-2xl font-bold leading-tight tracking-tight text-white md:text-4xl lg:text-[2.75rem]"
         />
 
 <AssessmentTestimonials />
         <SmallRoundBanner
           title={nextStepBanner.title}
+          contentAlign="left"
           description={nextStepBanner.description}
           backgroundImage={nextStepBanner.backgroundImage}
+          titleClassName="text-brand-orange text-3xl font-semibold md:text-5xl"
+            contentPaddingClassName="px-4 py-16 md:px-12 lg:px-24 lg:py-36"
+            descriptionClassName="text-white mt-12 sm:mt-28 sm:text-2xl font-light leading-[1.1] max-w-3xl"
         />
       </div>
 

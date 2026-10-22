@@ -7,7 +7,7 @@ import { obesityData } from "@/data/obesity";
 
 export default function ObesityPage() {
   const { hero, banners, infoBlocks } = obesityData;
-  const [firstBanner, secondBanner, ...restBanners] = banners;
+  const [firstBanner, secondBanner] = banners;
   const [biologyBlock, pakistanBlock] = infoBlocks;
 
   return (
@@ -15,23 +15,29 @@ export default function ObesityPage() {
       <HeroSection
         showExplore
         title={hero.title}
+        titleClassName="text-2xl font-semibold text-white md:text-5xl"
         subtitle={hero.subtitle}
+        subTitleClassName="text-white/95 md:text-lg font-light leading-[1.1]"
         backgroundImage={hero.backgroundImage}
         exploreText={hero.exploreText}
       />
 
       <div className="flex flex-col gap-10 py-12 md:gap-14 md:py-16">
-        <h1 className="text-2xl md:text-5xl 2xl:text-7xl mt-6 text-purple-800 font-bold text-center">Why Is Managing Weight So Difficult?</h1>
+        <h1 className="text-2xl md:text-5xl 2xl:text-[64px] mt-8 sm:mt-16 text-purple-800 font-bold text-center">Why Is Managing Weight So Difficult?</h1>
         {firstBanner ? (
           
           <SmallRoundBanner
             variant="tall"
+            contentAlign="left"
             title={firstBanner.title}
             description={firstBanner.description}
+            descriptionClassName="text-white sm:mt-32 sm:text-3xl font-light leading-[1.1] max-w-xl"
             backgroundImage={firstBanner.backgroundImage}
-            showBlueCta={firstBanner.showBlueCta}
+            showBlueCta={false}
+            showGradientCta
             hideAllCta={firstBanner.hideAllCta}
-            titleClassName="text-white"
+            titleClassName="text-white text-3xl font-semibold md:text-6xl"
+            contentPaddingClassName="px-4 py-16 md:px-12 lg:px-24 lg:py-32"
           />
         ) : null}
 
@@ -48,11 +54,15 @@ export default function ObesityPage() {
           <SmallRoundBanner
             variant="tall"
             title={secondBanner.title}
+            
             description={secondBanner.description}
+            descriptionClassName="text-white font-medium mt-28 sm:mt-36 sm:text-2xl  leading-[1.1]"
             backgroundImage={secondBanner.backgroundImage}
             showBlueCta={secondBanner.showBlueCta}
             hideAllCta={secondBanner.hideAllCta}
-            titleClassName="text-white"
+            titleClassName="text-2xl font-semibold leading-tight tracking-tight text-white md:text-4xl lg:text-[3.85rem]"
+            contentPaddingClassName="px-4 py-16 md:px-12 lg:px-24 lg:py-36 "
+            contentAlign="left"
           />
         ) : null}
 
@@ -65,30 +75,18 @@ export default function ObesityPage() {
           />
         ) : null}
 
-        {restBanners.map((banner) => (
-          <SmallRoundBanner
-            key={banner.title}
-            variant="tall"
-            title={banner.title}
-            description={
-              Array.isArray(banner.description) ? (
-                <>
-                  {banner.description.map((paragraph) => (
-                    <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                  ))}
-                </>
-              ) : (
-                banner.description
-              )
-            }
-            backgroundImage={banner.backgroundImage}
-            showBlueCta={banner.showBlueCta}
-            hideAllCta={banner.hideAllCta}
-            titleClassName={
-              banner.hideAllCta ? "text-brand-orange" : "text-white"
-            }
-          />
-        ))}
+        <SmallRoundBanner
+          variant="tall"
+          title="Obesity Can Start Early"
+          description="Children can also be affected by obesity, and its impact can continue into adulthood. Early awareness, healthy family habits, and support from healthcare professionals can help children build a healthier future."
+          descriptionClassName="text-white font-medium mt-28  sm:text-2xl font-light leading-[1.1]"
+          backgroundImage="/images/kids-shop.png"
+          showBlueCta={false}
+          hideAllCta={false}
+          titleClassName="text-2xl font-semibold leading-tight tracking-tight text-white md:text-4xl lg:text-[3.85rem]"
+          contentPaddingClassName="px-4 py-16 md:px-12 lg:px-24 lg:py-36 "
+          contentAlign="left"
+        />
       </div>
 
       <NotAloneBanner />

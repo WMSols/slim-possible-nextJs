@@ -12,12 +12,12 @@ export function WeightMoreThanNumber() {
         <div className="max-w-3xl lg:max-w-4xl">
           <h2
             id="weight-more-heading"
-            className="text-2xl font-bold leading-tight tracking-tight text-[#5b2a7a] md:text-3xl lg:text-4xl"
+            className="text-2xl font-normal leading-tight tracking-tight text-[#60269E] md:text-3xl lg:text-4xl"
           >
             {content.title}
           </h2>
 
-          <div className="mt-5 space-y-4 text-sm leading-relaxed text-zinc-900 md:mt-6 md:text-base lg:text-lg">
+          <div className="mt-5 space-y-4 text-sm  text-zinc-900 md:mt-6 md:text-base lg:text-2xl">
             {content.paragraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
             ))}

@@ -62,7 +62,7 @@ export function HealthRisksBanner() {
   return (
     <section
       id="explore"
-      className="relative z-20 mt-0 px-0 md:-mt-14"
+      className="relative z-20  px-0 -mt-8"
       aria-labelledby="health-risks-heading"
     >
       <div className="overflow-hidden rounded-[28px] bg-[#60269E] px-0 pb-10 pt-12 md:rounded-[35px] md:pb-22 md:pt-22">
