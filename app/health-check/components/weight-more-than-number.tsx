@@ -1,5 +1,6 @@
 "use client";
 
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { UniversalButton } from "@/components/shared/universal-button";
 import { healthCheckData } from "@/data/health-check";
 
@@ -9,7 +10,7 @@ export function WeightMoreThanNumber() {
   return (
     <section className="bg-white px-4 py-14 md:py-20" aria-labelledby="weight-more-heading">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
-        <div className="max-w-3xl lg:max-w-4xl">
+        <FadeUpView className="max-w-3xl lg:max-w-4xl">
           <h2
             id="weight-more-heading"
             className="text-2xl font-normal leading-tight tracking-tight text-[#60269E] md:text-3xl lg:text-4xl"
@@ -35,7 +36,7 @@ export function WeightMoreThanNumber() {
               ctaLink={content.gradientCta.link}
             />
           </div>
-        </div>
+        </FadeUpView>
       </div>
     </section>
   );

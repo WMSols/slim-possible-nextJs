@@ -1,5 +1,6 @@
 "use client";
 
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { UniversalButton } from "@/components/shared/universal-button";
 
 const CONTENT = {
@@ -13,7 +14,7 @@ export function AskAiSection() {
   return (
     <section className="bg-white px-4 py-14 md:pb-20 md:pt-12 ">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
-        <div className="max-w-3xl lg:max-w-4xl">
+        <FadeUpView className="max-w-3xl lg:max-w-4xl">
           <h2 className="bg-linear-to-r from-brand-gradient-from to-brand-gradient-to bg-clip-text text-3xl font-medium leading-none tracking-tight text-transparent md:text-5xl lg:text-6xl py-3">
             {CONTENT.title}
           </h2>
@@ -27,7 +28,7 @@ export function AskAiSection() {
               ctaLink={CONTENT.ctaLink}
             />
           </div>
-        </div>
+        </FadeUpView>
       </div>
     </section>
   );

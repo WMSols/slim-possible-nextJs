@@ -1,5 +1,6 @@
 "use client";
 
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { UniversalButton } from "@/components/shared/universal-button";
 
 const CONTENT = {
@@ -16,7 +17,7 @@ export function JustAskSection() {
   return (
     <section className="bg-white px-4 py-14 md:py-20 lg:py-24">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
-        <div className="max-w-2xl lg:max-w-3xl">
+        <FadeUpView className="max-w-2xl lg:max-w-3xl">
           <h2 className="text-3xl font-medium  tracking-tight  md:text-5xl lg:text-6xl">
             <span className="block">{CONTENT.lineOne}</span>
             <span className="block">{CONTENT.lineTwo}</span>
@@ -36,7 +37,7 @@ export function JustAskSection() {
               ctaLink={CONTENT.ctaLink}
             />
           </div>
-        </div>
+        </FadeUpView>
       </div>
     </section>
   );

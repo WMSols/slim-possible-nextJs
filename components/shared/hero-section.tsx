@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, X } from "lucide-react";
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { UniversalButton } from "@/components/shared/universal-button";
 
 export type HeroDisclaimer = {
@@ -94,7 +95,7 @@ export function HeroSection({
       className={`relative w-full ${isHome ? "bg-brand-mint pt-0" : ""}`}
     >
       {isHome ? (
-        <div className="relative z-40 flex items-end justify-center gap-2 px-3 pt-5 pb-1.5 text-center text-xs text-zinc-800 md:gap-3 md:px-4 md:pt-4 md:pb-2.5 md:text-base">
+        <FadeUpView className="relative z-40 flex items-end justify-center gap-2 px-3 pt-5 pb-1.5 text-center text-xs text-zinc-800 md:gap-3 md:px-4 md:pt-4 md:pb-2.5 md:text-base">
           <span>{shopCgmMessage}</span>
           <a
             href={shopCgmHref}
@@ -105,7 +106,7 @@ export function HeroSection({
             {shopCgmLabel}
             <ArrowRight className="size-3 md:size-3.5" aria-hidden />
           </a>
-        </div>
+        </FadeUpView>
       ) : null}
 
       <div
@@ -156,7 +157,7 @@ export function HeroSection({
               : "justify-center pt-24"
           }`}
         >
-          <div
+          <FadeUpView
             className={`flex w-full flex-col gap-2.5 md:gap-5 ${
               isLeftAligned
                 ? "mr-auto max-w-2xl items-start text-left lg:max-w-3xl"
@@ -194,7 +195,7 @@ export function HeroSection({
                 />
               </div>
             ) : null}
-          </div>
+          </FadeUpView>
 
           <AnimatePresence>
             {isHome && toastOpen && disclaimer ? (

@@ -1,3 +1,4 @@
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { AskAiSection } from "@/components/shared/ask-ai-section";
 import { HeroSection } from "@/components/shared/hero-section";
 import { NotAloneBanner } from "@/components/shared/not-alone-banner";
@@ -23,7 +24,9 @@ export default function ObesityPage() {
       />
 
       <div className="flex flex-col gap-10 py-12 md:gap-14 md:py-16">
+        <FadeUpView>
         <h1 className="text-2xl md:text-5xl 2xl:text-[64px] mt-8 sm:mt-16 text-purple-800 font-bold text-center">Why Is Managing Weight So Difficult?</h1>
+        </FadeUpView>
         {firstBanner ? (
           
           <SmallRoundBanner

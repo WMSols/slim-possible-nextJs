@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FadeUpView } from "@/components/animations/fade-up-view";
 
 export type AboutSlimPossibleSectionProps = {
   titleLead: string;
@@ -22,6 +23,7 @@ export function AboutSlimPossibleSection({
   return (
     <section className="bg-white px-4 pt-12 md:pt-32">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
+        <FadeUpView>
         <h2 className="text-3xl font-bold leading-tight tracking-tight text-zinc-900 md:text-4xl lg:text-[2.75rem]">
           {titleLead} <span className="text-brand-green">{titleSlim}</span>
           <span className="text-brand-purple">{titlePossible}</span>
@@ -29,8 +31,10 @@ export function AboutSlimPossibleSection({
         <p className="mt-4 max-w-5xl text-sm  text-zinc-900 md:mt-8 md:text-base lg:text-2xl">
           {description}
         </p>
+        </FadeUpView>
 
-        <div className="relative isolate mt-8 min-h-[28rem] overflow-hidden rounded-[25px] md:mt-16 md:min-h-[34rem] md:rounded-[35px] lg:min-h-[38rem]">
+        <FadeUpView className="mt-8 w-full md:mt-16">
+        <div className="relative isolate min-h-[28rem] overflow-hidden rounded-[25px] md:min-h-[34rem] md:rounded-[35px] lg:min-h-[38rem]">
           <Image
             src={backgroundImage}
             alt=""
@@ -51,6 +55,7 @@ export function AboutSlimPossibleSection({
             </div>
           </div>
         </div>
+        </FadeUpView>
       </div>
     </section>
   );

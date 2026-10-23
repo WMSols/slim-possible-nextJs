@@ -1,3 +1,4 @@
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { ExploreCards } from "./components/explore-cards";
 import { HeroSection } from "@/components/shared/hero-section";
 import { MediaCarousel } from "@/components/shared/media-carousel";
@@ -19,16 +20,20 @@ export default function CommunityAndMediaPage() {
 
       <section className="bg-white px-4 py-14 md:py-20">
         <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
+          <FadeUpView>
           <p className="mb-10 max-w-5xl text-base font-normal  text-zinc-900 md:mb-12 md:text-lg lg:text-4xl py-4 sm:py-10">
             {intro.beforeBrand}
             <span className="font-semibold text-brand-green">Slim</span>
             <span className="font-semibold text-brand-purple">Possible</span>
             {intro.afterBrand}
           </p>
+          </FadeUpView>
 
+          <FadeUpView>
           <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-[#5E2D8E] md:mb-20 md:text-3xl lg:text-4xl">
             Featured
           </h2>
+          </FadeUpView>
           <MediaCarousel />
           <ExploreCards />
         </div>

@@ -54,7 +54,7 @@ export const slimPossibleAiData = {
         opacity: 0.32,
       },
       {
-        src: "/images/obesity/mw-food.png",
+        src: "/images/girl-fruits.png",
         alt: "Woman at a table with food",
         opacity: 1,
       },

@@ -27,6 +27,11 @@ const variantClasses: Record<UniversalButtonVariant, string> = {
 const baseClass =
   "inline-flex h-11 w-fit cursor-pointer items-center justify-center gap-2.5 rounded-full text-sm font-medium md:text-base";
 
+const variantLinks: Partial<Record<UniversalButtonVariant, string>> = {
+  orange: "https://www.marham.pk/obesity-digital-clinic",
+  blue: "https://obesity-care.vercel.app/",
+};
+
 export function UniversalButton({
   variant,
   ctaText,
@@ -36,6 +41,9 @@ export function UniversalButton({
   type = "button",
 }: UniversalButtonProps) {
   const className = `${baseClass} ${variantClasses[variant]} ${ctaClassName}`;
+  const href =
+    ctaLink && ctaLink !== "#" ? ctaLink : (variantLinks[variant] ?? "#");
+  const isExternal = href.startsWith("http");
 
   const content = (
     <>
@@ -66,7 +74,13 @@ export function UniversalButton({
           {content}
         </button>
       ) : (
-        <Link href={ctaLink || "#"} className={className}>
+        <Link
+          href={href}
+          className={className}
+          {...(isExternal
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
           {content}
         </Link>
       )}

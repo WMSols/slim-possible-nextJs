@@ -4,6 +4,8 @@ import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { FadeUpView } from "@/components/animations/fade-up-view";
+import { StaggerFadeUpView } from "@/components/animations/stagger-fade-up-view";
 import { UniversalButton } from "@/components/shared/universal-button";
 import { homeData } from "@/data/home";
 import { cn } from "@/lib/utils";
@@ -261,14 +263,16 @@ export function HealthToolsSection({
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
         {isStacked ? (
           <>
+            <FadeUpView>
             <h2
               id="health-tools-heading"
               className="mb-8 mt-8 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-[#60269E] md:mb-10 md:text-3xl lg:max-w-4xl lg:text-5xl 2xl:text-6xl 2xl:max-w-6xl"
             >
               {healthTools.stackedTitle}
             </h2>
+            </FadeUpView>
 
-            <div className="flex flex-col gap-5 md:gap-6">
+            <StaggerFadeUpView className="flex flex-col gap-5 md:gap-6">
               <ToolCard
                 image={healthTools.bmi.stackedImage}
                 heading={healthTools.bmi.heading}
@@ -283,15 +287,17 @@ export function HealthToolsSection({
                 ctaText={healthTools.waistRisk.ctaText}
                 onOpen={() => setOpenCalculator("waist")}
               />
-            </div>
+            </StaggerFadeUpView>
 
+            <FadeUpView>
             <p className="mt-5 text-left text-xs text-zinc-500 md:text-sm">
               {healthTools.disclaimer}
             </p>
+            </FadeUpView>
           </>
         ) : (
           <>
-            <div className="mx-auto mt-8 mb-8 max-w-3xl text-center md:mb-10">
+            <FadeUpView className="mx-auto mt-8 mb-8 max-w-3xl text-center md:mb-10">
               <h2
                 id="health-tools-heading"
                 className="text-3xl font-semibold tracking-tight text-zinc-900 md:text-4xl lg:text-5xl"
@@ -302,11 +308,12 @@ export function HealthToolsSection({
               <p className=" mt-2 sm:mt-8  text-sm font-semibold text-[#60269E] md:text-base lg:text-2xl">
               Check your BMI and waist measurement for a quick<br className="hidden md:block"/> indication of weight-related health risk.
               </p>
-            </div>
+            </FadeUpView>
 
             {/* Image uses fill, so this box is the height. Below 2xl the card is
                 max-w-5xl, and 2:1 keeps a laptop from stretching to ~730px.
                 At 2xl the card is max-w-7xl and 1280/730 keeps that wide layout. */}
+            <FadeUpView className="w-full">
             <div
               className={cn(
                 "relative isolate overflow-hidden rounded-[25px] md:rounded-[35px]",
@@ -372,10 +379,13 @@ export function HealthToolsSection({
                 </div>
               </div>
             </div>
+            </FadeUpView>
 
+            <FadeUpView>
             <p className="mt-5 sm:ml-10 text-xs text-zinc-500 md:text-sm">
               {healthTools.disclaimer}
             </p>
+            </FadeUpView>
           </>
         )}
       </div>

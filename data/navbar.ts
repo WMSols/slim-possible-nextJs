@@ -59,7 +59,7 @@ export const mainNavItems: NavItem[] = [
     href: "/about-us",
     description:
       "SlimPossible is a health platform designed to help people better understand obesity and find the right support",
-    megaImage: "/images/slim-possible-gp.png",
+    megaImage: "/images/hand-pen.png",
     megaImageSubtitle: "Discover SlimPossible",
     megaImageLink: "/about-us",
     children: [
@@ -85,7 +85,7 @@ export const secondaryNavItems: NavItem[] = [
     href: "/slim-possible-ai",
     description:
       "Ask SlimPossible about your weight, health, or treatment options in simple language",
-    megaImage: "/images/cgm-app.png",
+    megaImage: "/images/man-sunset.jpg",
     megaImageSubtitle: "Ask SlimPossible’s AI",
     megaImageLink: "/slim-possible-ai",
   },

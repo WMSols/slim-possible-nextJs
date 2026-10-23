@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { UniversalButton } from "@/components/shared/universal-button";
 import { cn } from "@/lib/utils";
 
@@ -68,6 +69,7 @@ export function SmallRoundBanner({
     : "px-6 py-14 md:px-12 md:py-20 lg:px-16";
 
   return (
+    <FadeUpView className="w-full">
     <section
       className={cn(
         "relative mx-auto w-full overflow-hidden px-4",
@@ -166,5 +168,6 @@ export function SmallRoundBanner({
         </div>
       </div>
     </section>
+    </FadeUpView>
   );
 }

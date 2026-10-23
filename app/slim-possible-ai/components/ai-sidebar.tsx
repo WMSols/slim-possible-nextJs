@@ -13,6 +13,7 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
+import { StaggerFadeUpView } from "@/components/animations/stagger-fade-up-view";
 import { AiBrandMark } from "@/app/slim-possible-ai/components/ai-brand-mark";
 import {
   slimPossibleAiData,
@@ -32,7 +33,8 @@ const ICONS: Record<AiSidebarItem["icon"], typeof Home> = {
 
 function SidebarLinks({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <nav className="mt-10 flex flex-col gap-1" aria-label="AI page navigation">
+    <nav aria-label="AI page navigation">
+      <StaggerFadeUpView className="mt-10 flex flex-col gap-1">
       {slimPossibleAiData.sidebar.map((item) => {
         const Icon = ICONS[item.icon];
         const external = item.href.startsWith("http");
@@ -51,6 +53,7 @@ function SidebarLinks({ onNavigate }: { onNavigate?: () => void }) {
           </Link>
         );
       })}
+      </StaggerFadeUpView>
     </nav>
   );
 }

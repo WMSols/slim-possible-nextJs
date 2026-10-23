@@ -86,40 +86,14 @@ export function Navbar() {
     Boolean((item.children && item.children.length > 0) || item.megaImage);
 
   const renderLogo = (size: "desktop" | "mobile") => (
-    <span
-      className={cn(
-        "flex flex-col text-white",
-        size === "desktop" ? "gap-0.5" : "gap-px",
-      )}
-    >
-      <Image
-        src="/images/slim-possible-gp.png"
-        alt="#SlimPossible"
-        width={220}
-        height={40}
-        className={cn(
-          "w-auto",
-          size === "desktop" ? "h-7" : "h-5",
-        )}
-        priority
-      />
-      <span
-        className={cn(
-          "whitespace-nowrap text-white",
-          size === "desktop" ? "text-[11px]" : "text-[9px]",
-        )}
-      >
-        <span
-          className={cn(
-            "italic",
-            size === "desktop" ? "text-[8px]" : "text-[7px]",
-          )}
-        >
-          with
-        </span>{" "}
-        Diet, Stride &amp; Medical Advise
-      </span>
-    </span>
+    <Image
+      src="/images/SP-black-logo.png"
+      alt="#SlimPossible"
+      width={1500}
+      height={331}
+      className={cn("w-auto", size === "desktop" ? "h-14" : "h-10")}
+      priority
+    />
   );
 
   const renderMegaMenu = (item: NavItem) => {

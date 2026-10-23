@@ -3,6 +3,8 @@
 import { FormEvent, useCallback, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { FadeUpView } from "@/components/animations/fade-up-view";
+import { StaggerFadeUpView } from "@/components/animations/stagger-fade-up-view";
 import { AiSidebar } from "@/app/slim-possible-ai/components/ai-sidebar";
 import { slimPossibleAiData } from "@/data/slim-possible-ai";
 
@@ -59,7 +61,7 @@ export function AiChat() {
     <div className="relative flex min-h-dvh bg-linear-to-b from-[#f3c9b8] via-[#e0c0d4] to-[#b89ad0]">
       <AiSidebar />
 
-      <div className="relative flex min-h-dvh flex-1 flex-col px-4 pb-6 pt-24 sm:px-6 md:px-10 lg:px-12 lg:pt-10">
+      <FadeUpView className="relative flex min-h-dvh flex-1 flex-col px-4 pb-6 pt-24 sm:px-6 md:px-10 lg:px-12 lg:pt-10">
         <div className="mx-auto flex w-full max-w-xl flex-1 flex-col md:max-w-2xl">
           <div className="flex-1 overflow-y-auto pr-1">
             <AnimatePresence mode="popLayout">
@@ -69,8 +71,9 @@ export function AiChat() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
-                  className="mx-auto flex w-full max-w-md flex-col items-start gap-3 pt-4 md:max-w-lg md:gap-3.5 md:pt-10"
+                  className="w-full"
                 >
+                <StaggerFadeUpView className="mx-auto flex w-full max-w-md flex-col items-start gap-3 pt-4 md:max-w-lg md:gap-3.5 md:pt-10">
                   {suggestions.map((suggestion) => (
                     <button
                       key={suggestion}
@@ -81,6 +84,7 @@ export function AiChat() {
                       {suggestion}
                     </button>
                   ))}
+                </StaggerFadeUpView>
                 </motion.div>
               ) : (
                 <motion.div
@@ -136,7 +140,7 @@ export function AiChat() {
             </button>
           </form>
         </div>
-      </div>
+      </FadeUpView>
     </div>
   );
 }

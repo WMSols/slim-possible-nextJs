@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { FadeUpView } from "@/components/animations/fade-up-view";
+import { StaggerFadeUpView } from "@/components/animations/stagger-fade-up-view";
 import { testimonials } from "@/data/testimonials";
 
-/** Placeholder until assessment URL is ready */
-const ASSESSMENT_HREF = "";
+const ASSESSMENT_HREF = "https://obesity-care.vercel.app/";
 
 const STEPS = [
   {
@@ -42,6 +43,7 @@ export function AssessmentTestimonials() {
     <section className="bg-white px-4 py-14 md:py-16">
       <div className="mx-auto w-full max-w-5xl 2xl:max-w-7xl">
         <div className="flex flex-col items-center">
+          <FadeUpView>
           <Image
             src="/images/marham-slimpossible.png"
             alt="Marham x SlimPossible"
@@ -49,8 +51,12 @@ export function AssessmentTestimonials() {
             height={140}
             className="h-auto w-[min(100%,22rem)] object-contain md:w-[min(100%,28rem)]"
           />
+          </FadeUpView>
 
-          <div className="mt-10 grid w-full grid-cols-1 items-stretch gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
+          <StaggerFadeUpView
+            className="mt-10 grid w-full grid-cols-1 items-stretch gap-5 md:mt-12 md:grid-cols-3 md:gap-6"
+            itemClassName="h-full"
+          >
             {STEPS.map((step) => (
               <article
                 key={step.title}
@@ -64,22 +70,31 @@ export function AssessmentTestimonials() {
                 </p>
               </article>
             ))}
-          </div>
+          </StaggerFadeUpView>
 
+          <FadeUpView>
           <a
             href={ASSESSMENT_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center justify-center rounded-xl bg-brand-blue px-8 py-3.5 text-sm font-semibold text-white transition hover:brightness-110 md:mt-10 md:px-10 md:py-4 md:text-base"
           >
             Start Your Assessment
           </a>
+          </FadeUpView>
         </div>
 {/* Testimonials */}
         <div className="mt-16 md:mt-20">
+          <FadeUpView>
           <h2 className="text-sm font-medium uppercase tracking-[0.12em] text-[#6B8A9A] md:text-base">
             What patients are saying
           </h2>
+          </FadeUpView>
 
-          <div className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-2">
+          <StaggerFadeUpView
+            className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-2"
+            itemClassName="h-full"
+          >
             {testimonials.map((item) => (
               <article
                 key={`${item.name}-${item.location}`}
@@ -101,7 +116,7 @@ export function AssessmentTestimonials() {
                 </p>
               </article>
             ))}
-          </div>
+          </StaggerFadeUpView>
         </div>
       </div>
     </section>

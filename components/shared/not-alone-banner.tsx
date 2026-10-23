@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { UniversalButton } from "@/components/shared/universal-button";
 import { cn } from "@/lib/utils";
 
@@ -47,6 +48,7 @@ export function NotAloneBanner({ variant = "default" }: NotAloneBannerProps) {
   return (
     <section className="w-full  py-10  md:py-14 lg:py-16">
       {/* Full-bleed width with visible rounded corners; ~780px on desktop */}
+      <FadeUpView className="w-full">
       <div className="relative isolate min-h-[26rem] w-full overflow-hidden rounded-[25px] md:min-h-[36rem] md:rounded-[40px] lg:min-h-[780px]">
         <Image
           src={
@@ -122,6 +124,7 @@ export function NotAloneBanner({ variant = "default" }: NotAloneBannerProps) {
           </div>
         )}
       </div>
+      </FadeUpView>
     </section>
   );
 }

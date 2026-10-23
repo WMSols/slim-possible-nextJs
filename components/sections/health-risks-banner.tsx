@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { homeData, type RiskPill } from "@/data/home";
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { cn } from "@/lib/utils";
 
 function Pill({ item }: { item: RiskPill }) {
   if (item.type === "image") {
     return (
-      <div className="relative h-16 w-52 shrink-0 overflow-hidden rounded-full">
+      <div className="relative mr-4 h-16 w-52 shrink-0 overflow-hidden rounded-full">
         <Image
           src={item.src}
           alt={item.alt}
@@ -20,7 +21,7 @@ function Pill({ item }: { item: RiskPill }) {
   }
 
   return (
-    <span className="shrink-0 whitespace-nowrap rounded-full border border-white/70 px-6 py-3 text-lg text-white">
+    <span className="mr-4 shrink-0 whitespace-nowrap rounded-full border border-white/70 px-6 py-3 text-lg text-white">
       {item.label}
     </span>
   );
@@ -33,13 +34,15 @@ function MarqueeRow({
   items: RiskPill[];
   direction: "left" | "right";
 }) {
-  const track = [...items, ...items];
+  // One set is narrower than a wide screen. Eight copies make each half
+  // of the track wider than the viewport, and the -50% loop stays seamless.
+  const track = Array.from({ length: 8 }, () => items).flat();
 
   return (
     <div className="relative w-full overflow-hidden">
       <div
         className={cn(
-          "flex w-max items-center gap-4",
+          "flex w-max items-center",
           direction === "left"
             ? "animate-marquee-left"
             : "animate-marquee-right",
@@ -65,6 +68,7 @@ export function HealthRisksBanner() {
       className="relative z-20  px-0 -mt-8"
       aria-labelledby="health-risks-heading"
     >
+      <FadeUpView className="w-full">
       <div className="overflow-hidden rounded-[28px] bg-[#60269E] px-0 pb-10 pt-12 md:rounded-[35px] md:pb-22 md:pt-22">
         <h2
           id="health-risks-heading"
@@ -90,6 +94,7 @@ export function HealthRisksBanner() {
           <MarqueeRow items={healthRisks.rowTwo} direction="right" />
         </div>
       </div>
+      </FadeUpView>
     </section>
   );
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Play } from "lucide-react";
 import { mediaCarouselSlides } from "@/data/media-carousel";
+import { FadeUpView } from "@/components/animations/fade-up-view";
 import { cn } from "@/lib/utils";
 
 export function MediaCarousel() {
@@ -12,7 +13,7 @@ export function MediaCarousel() {
   const slide = mediaCarouselSlides[activeIndex] ?? mediaCarouselSlides[0];
 
   return (
-    <div className="w-full">
+    <FadeUpView className="w-full">
       <div className="relative isolate aspect-[16/10] w-full overflow-hidden rounded-[28px] md:aspect-[16/9] md:rounded-[36px] lg:rounded-[40px]">
         <div
           className="absolute inset-0 flex transition-transform duration-500 ease-out motion-reduce:transition-none"
@@ -75,6 +76,6 @@ export function MediaCarousel() {
           })}
         </div>
       </div>
-    </div>
+    </FadeUpView>
   );
 }
