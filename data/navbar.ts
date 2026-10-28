@@ -98,6 +98,34 @@ export const navItems = [
   ...secondaryNavItems.map(({ label, href }) => ({ label, href })),
 ];
 
+export const footerSocialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/slimpossiblepk?igsh=MXYzeHVhY3hoZWlhcA==",
+    icon: "instagram",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/people/Slim-Possible/61585621366038/?rdid=J6h6U5z3KISBtJUA&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1By2GHVGFU%2F",
+    icon: "facebook",
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@slimpossibleofficial",
+    icon: "tiktok",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/slim-possible-pk/",
+    icon: "linkedin",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@SlimPossiblePK",
+    icon: "youtube",
+  },
+] as const;
+
 export const footerLinkGroups = [
   {
     title: "Explore",
